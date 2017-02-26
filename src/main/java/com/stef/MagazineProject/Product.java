@@ -1,17 +1,24 @@
 package com.stef.MagazineProject;
 
 
+import java.util.GregorianCalendar;
+
 public class Product {
     private int id;
     private String name;
     private double price;
     private String vendor;
-    private int productionDay;
-    private int productionMonth;
-    private int productionYear;
-    private int expDay;
-    private int expMonth;
-    private int expYear;
+    private GregorianCalendar productionDate;
+    private GregorianCalendar expDate;
+
+    public Product(int id, String name, double price, String vendor, GregorianCalendar productionDate, GregorianCalendar expDate) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.vendor = vendor;
+        this.productionDate = productionDate;
+        this.expDate = expDate;
+    }
 
     public String getName() {
         return name;
@@ -45,51 +52,9 @@ public class Product {
         this.vendor = vendor;
     }
 
-    public int getProductionDay() {
-        return productionDay;
+    public void showExpDate(){
+        System.out.println("Exp date is :" + expDate.getTime());
     }
 
-    public void setProductionDay(int productionDay) {
-        this.productionDay = productionDay;
-    }
 
-    public int getProductionMonth() {
-        return productionMonth;
-    }
-
-    public void setProductionMonth(int productionMonth) {
-        this.productionMonth = productionMonth;
-    }
-
-    public int getProductionYear() {
-        return productionYear;
-    }
-
-    public void setProductionYear(int productionYear) {
-        this.productionYear = productionYear;
-    }
-
-    public int getExpDay() {
-        return expDay;
-    }
-
-    public void setExpDay(int expDay) {
-        this.expDay = expDay;
-    }
-
-    public int getExpMonth() {
-        return expMonth;
-    }
-
-    public void setExpMonth(int expMonth) {
-        this.expMonth = expMonth;
-    }
-
-    public int getExpYear() {
-        return expYear;
-    }
-
-    public void setExpYear(int expYear) {
-        this.expYear = expYear;
-    }
 }

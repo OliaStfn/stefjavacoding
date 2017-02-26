@@ -1,5 +1,7 @@
 package com.stef.MagazineProject;
 
+import java.util.GregorianCalendar;
+
 public class Main {
     public static void main(String[] args) {
         Human obj = new Human();
@@ -12,8 +14,8 @@ public class Main {
         int day = object.getBornDay();
         int month = object.getBornMonth();
         int year = object.getBornYear();
-        String  name= object.getName();
-        String  surname= object.getSurname();
+        String name = object.getName();
+        String surname = object.getSurname();
 
         // new test connection
         // new line 3
@@ -27,5 +29,12 @@ public class Main {
 
         System.out.println("Start task 3002");
         System.out.println("Finish task 3002");
+
+
+        Product pr1 = new Product(1, "Galaxy S", 1000, "Samsung",
+                new GregorianCalendar(),
+                new GregorianCalendar(2019, 2, 26));
+        pr1.showExpDate();
+
     }
 }
