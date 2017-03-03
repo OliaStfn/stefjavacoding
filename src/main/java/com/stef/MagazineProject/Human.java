@@ -11,11 +11,13 @@ public class Human {
     public Human() {
         name = "name";
         surname = "surname";
+        bornDate = new GregorianCalendar(1990, 01, 01);
+    }
 
-
-    public Human(String name, String surname) {
+    public Human(String name, String surname,int year,int month,int day) {
             setName(name);
             setSurname(surname);
+            bornDate = new GregorianCalendar(year,month,day);
         }
 
     public String getName() {
@@ -39,6 +41,6 @@ public class Human {
     public void showInfo() {
         System.out.println("Name: " + name);
         System.out.println("Surname: " + surname);
-        System.out.println("Birthday: " +);
+        System.out.println("Birthday: " +bornDate.getGregorianChange());
     }
 }
