@@ -1,25 +1,22 @@
 package com.stef.MagazineProject;
 
 
+import java.util.GregorianCalendar;
+
 public class Human {
     private String name;
     private String surname;
-    private int bornDay;
-    private int bornMonth;
-    private int bornYear;
+    GregorianCalendar bornDate;
 
     public Human() {
         name = "name";
         surname = "surname";
-        bornDay = 1;
-        bornMonth = 1;
-        bornYear = 1920;
-    }
+
 
     public Human(String name, String surname) {
-        setName(name);
-        setSurname(surname);
-    }
+            setName(name);
+            setSurname(surname);
+        }
 
     public String getName() {
         return name;
@@ -37,35 +34,11 @@ public class Human {
         this.surname = surname;
     }
 
-    //TODO Task 3001
-    public int getBornDay() {
-        return bornDay;
-    }
-
-    public void setBornDay(int bornDay) {
-        this.bornDay = bornDay;
-    }
-
-    public int getBornMonth() {
-        return bornMonth;
-    }
-
-    public void setBornMonth(int bornMonth) {
-        this.bornMonth = bornMonth;
-    }
-
-    public int getBornYear() {
-        return bornYear;
-    }
-
-    public void setBornYear(int bornYear) {
-        this.bornYear = bornYear;
-    }
-
+    //start Task 6001
 
     public void showInfo() {
         System.out.println("Name: " + name);
         System.out.println("Surname: " + surname);
-        System.out.println("Birthday: " + bornDay + "." + bornMonth + "." + bornYear);
+        System.out.println("Birthday: " +);
     }
 }
