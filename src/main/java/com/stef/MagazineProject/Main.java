@@ -5,15 +5,10 @@ import java.util.GregorianCalendar;
 public class Main {
     public static void main(String[] args) {
         Human obj = new Human();
-        Human object = new Human("John", "Brown");
-        obj.setBornDay(22);
-        obj.setBornMonth(3);
-        obj.setBornYear(1999);
+        Human object = new Human("John", "Brown",1994,11,3);
         obj.setName("Olia");
         obj.setSurname("Stefanyshyn");
-        int day = object.getBornDay();
-        int month = object.getBornMonth();
-        int year = object.getBornYear();
+
         String name = object.getName();
         String surname = object.getSurname();
 
