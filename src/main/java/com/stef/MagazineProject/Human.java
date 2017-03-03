@@ -36,7 +36,6 @@ public class Human {
         this.surname = surname;
     }
 
-    //start Task 6001
 
     public void showInfo() {
         System.out.println("Name: " + name);
