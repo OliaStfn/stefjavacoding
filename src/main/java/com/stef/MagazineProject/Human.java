@@ -36,6 +36,13 @@ public class Human {
         this.surname = surname;
     }
 
+    public GregorianCalendar getBornDate() {
+        return bornDate;
+    }
+
+    public void setBornDate(GregorianCalendar bornDate) {
+        this.bornDate = bornDate;
+    }
 
     public void showInfo() {
         System.out.println("Name: " + name);
