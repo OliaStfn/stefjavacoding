@@ -1,32 +1,53 @@
 package com.stef.MagazineProject;
 
+import java.util.GregorianCalendar;
+
 public class Employee extends Human {
-    private double experience, salary , koef;
-    private String post;
+
+
+    private GregorianCalendar date_of_begin;
+    private double salary;
     private double rating;
 
-    public double getExperience() {
-        return experience;
-    }
-    public Employee(){
+
+    public Employee() {
         super();
-        experience=0;
-        salary= 2000;
-        koef=1;
-        post="none";
-        rating=0;
+        salary = 2000;
+        rating = 0;
+        date_of_begin = new GregorianCalendar(2016, 5, 5);
     }
 
-    public Employee(String name,String surname, int year, int month, int day,double salary)
-    {
+    public Employee(String name, String surname, int year, int month, int day, double salary, double rating) {
         super(name, surname, year, month, day);
-        this.salary=salary;
+        this.salary = salary;
+        this.rating = rating;
+        date_of_begin = new GregorianCalendar();
     }
-    public void raiseSalary(){
-        this.salary+=salary*koef;
+
+    public void raiseSalary() {
+        this.salary += salary;
     }
-    public void setExperience(double experience) {
-        this.experience = experience;
+
+    public void getExperience() {
+        GregorianCalendar curentDate = new GregorianCalendar();
+        int year, month, date, hour, minutes;
+
+        year = curentDate.get(GregorianCalendar.YEAR)
+                - date_of_begin.get(GregorianCalendar.YEAR);
+        month = curentDate.get(GregorianCalendar.MONTH)
+                - date_of_begin.get(GregorianCalendar.MONTH);
+        date = curentDate.get(GregorianCalendar.DATE)
+                - date_of_begin.get(GregorianCalendar.DATE);
+        hour = curentDate.get(GregorianCalendar.HOUR)
+                - date_of_begin.get(GregorianCalendar.HOUR);
+        minutes = curentDate.get(GregorianCalendar.MINUTE)
+                - date_of_begin.get(GregorianCalendar.MINUTE);
+
+        System.out.println(" year = " + year +
+                " month = " + month +
+                " date = " + date +
+                " hour = " + hour +
+                " minutes = " + minutes);
     }
 
     public double getSalary() {
@@ -37,21 +58,6 @@ public class Employee extends Human {
         this.salary = salary;
     }
 
-    public double getKoef() {
-        return koef;
-    }
-
-    public void setKoef(double koef) {
-        this.koef = koef;
-    }
-
-    public String getPost() {
-        return post;
-    }
-
-    public void setPost(String post) {
-        this.post = post;
-    }
 
     public double getRating() {
         return rating;
@@ -59,5 +65,9 @@ public class Employee extends Human {
 
     public void setRating(double rating) {
         this.rating = rating;
+    }
+
+    public GregorianCalendar getDate_of_begin() {
+        return date_of_begin;
     }
 }
