@@ -16,6 +16,7 @@ public class Employee extends Human {
         post="none";
         rating=0;
     }
+
     public Employee(String name,String surname, int year, int month, int day,double salary)
     {
         super(name, surname, year, month, day);
