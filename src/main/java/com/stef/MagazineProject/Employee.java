@@ -43,6 +43,9 @@ public class Employee extends Human {
         minutes = curentDate.get(GregorianCalendar.MINUTE)
                 - date_of_begin.get(GregorianCalendar.MINUTE);
 
+        if(month<0){
+            month=0;
+        }
         System.out.println(" year = " + year +
                 " month = " + month +
                 " date = " + date +
