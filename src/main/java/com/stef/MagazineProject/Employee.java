@@ -4,8 +4,9 @@ import java.util.GregorianCalendar;
 import java.util.Vector;
 
 public class Employee extends Human {
+    private static int nextId = 1;
 
-
+    private int id;
     private GregorianCalendar date_of_begin;
     private double salary;
     private double rating;
@@ -13,18 +14,18 @@ public class Employee extends Human {
 
     public Employee() {
         super();
+        setId();
         salary = 2000;
         rating = 0;
         date_of_begin = new GregorianCalendar(2016, 5, 5);
-        marks= new Vector<Mark>();
+        marks = new Vector<Mark>();
     }
 
-    public Employee(String name, String surname, int year, int month, int day, double salary, double rating) {
+    public Employee(String name, String surname, int year, int month, int day, double salary) {
         super(name, surname, year, month, day);
         this.salary = salary;
-        this.rating = rating;
         date_of_begin = new GregorianCalendar();
-        marks= new Vector<Mark>();
+        marks = new Vector<Mark>();
     }
 
     public void raiseSalary() {
@@ -64,34 +65,53 @@ public class Employee extends Human {
         this.salary = salary;
     }
 
-
     public double getRating() {
         return rating;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
     }
 
     public GregorianCalendar getDate_of_begin() {
         return date_of_begin;
     }
-    public void addMark(double mark){
+
+    public void addMark(double mark) {
         marks.add(new Mark(mark));
     }
-    public void generationRating(){
-        double sum=0;
-        int count=0;
-        GregorianCalendar current=new GregorianCalendar();
-        //for(Mark i : marks){
 
-      //  }
-        for(int i=0;i<marks.size();i++){
-            if(marks.elementAt(i).getTime().get(GregorianCalendar.MONTH)==current.get(GregorianCalendar.MONTH)){
+    public void generationRating() {
+        double sum = 0;
+        int count = 0;
+        GregorianCalendar current = new GregorianCalendar();
+
+        for (int i = 0; i < marks.size(); i++) {
+            if (marks.elementAt(i).getTime().get(GregorianCalendar.MONTH) == current.get(GregorianCalendar.MONTH)) {
                 count++;
-                sum+=marks.elementAt(i).getMark();
+                sum += marks.elementAt(i).getMark();
             }
         }
-      rating=sum/count;
+        rating = sum / count;
+    }
+
+    public static int getNextId() {
+        return nextId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId() {
+        id = nextId;
+        nextId++;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name=" + getName() +
+                "surname=" + getSurname() +
+                "id=" + getId() +
+                ", salary=" + salary +
+                ", rating=" + rating +
+                '}';
     }
 }

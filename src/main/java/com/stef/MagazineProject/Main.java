@@ -18,8 +18,7 @@ public class Main {
         System.out.println("Start task 3001");
         System.out.println("Finish task 3001");
 
-        obj.showInfo();
-        object.showInfo();
+
         //my line
 
         System.out.println("Start task 3002");

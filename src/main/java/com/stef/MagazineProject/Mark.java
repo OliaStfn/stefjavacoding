@@ -7,13 +7,13 @@ public class Mark {
     private GregorianCalendar time;
 
     public Mark() {
-        mark=0;
-        time= new GregorianCalendar();
+        mark = 0;
+        time = new GregorianCalendar();
     }
 
     public Mark(double mark) {
         this.mark = mark;
-        time=new GregorianCalendar();
+        time = new GregorianCalendar();
     }
 
     public double getMark() {

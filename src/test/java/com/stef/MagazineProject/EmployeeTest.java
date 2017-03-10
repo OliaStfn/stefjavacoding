@@ -23,7 +23,7 @@ public class EmployeeTest {
         String surname = "Mykhailiv";
         int year = 1990, month = 7, day = 30;
         double salary = 5000, koef = 0.10, rating = 1;
-        Employee em = new Employee(name, surname, year, month, day, salary, rating);
+        Employee em = new Employee(name, surname, year, month, day, salary);
 
         assertEquals(salary, em.getSalary(), 0);
         em.raiseSalary();

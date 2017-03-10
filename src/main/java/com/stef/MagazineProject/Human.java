@@ -40,13 +40,13 @@ public class Human {
         return bornDate;
     }
 
-    public void setBornDate(GregorianCalendar bornDate) {
-        this.bornDate = bornDate;
-    }
 
-    public void showInfo() {
-        System.out.println("Name: " + name);
-        System.out.println("Surname: " + surname);
-        System.out.println("Birthday: " + bornDate.getGregorianChange());
+    @Override
+    public String toString() {
+        return "Human{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", bornDate=" + bornDate +
+                '}';
     }
 }
