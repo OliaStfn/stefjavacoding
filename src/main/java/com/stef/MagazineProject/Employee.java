@@ -79,7 +79,7 @@ public class Employee extends Human {
     public void addMark(double mark){
         marks.add(new Mark(mark));
     }
-    public double generationRaiting(){
+    public void generationRating(){
         double sum=0;
         int count=0;
         GregorianCalendar current=new GregorianCalendar();
@@ -92,6 +92,6 @@ public class Employee extends Human {
                 sum+=marks.elementAt(i).getMark();
             }
         }
-        return sum/count;
+      rating=sum/count;
     }
 }
