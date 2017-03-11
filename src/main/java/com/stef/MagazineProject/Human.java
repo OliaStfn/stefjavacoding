@@ -49,7 +49,18 @@ public class Human {
                 ", bornDate=" + bornDate +
                 '}';
     }
-    public int Age(){
+
+    public int Age() {
         int year;
+        GregorianCalendar current = new GregorianCalendar();
+        year = current.get(GregorianCalendar.YEAR) - bornDate.get(GregorianCalendar.YEAR);
+        if (current.get(GregorianCalendar.MONTH) < bornDate.get(GregorianCalendar.MONTH)) {
+            year--;
+        }
+        if (current.get(GregorianCalendar.MONTH) == bornDate.get(GregorianCalendar.MONTH) &&
+                current.get(GregorianCalendar.DATE) < bornDate.get(GregorianCalendar.DATE)) {
+            year--;
+        }
+        return year;
     }
 }
