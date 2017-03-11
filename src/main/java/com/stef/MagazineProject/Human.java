@@ -49,4 +49,7 @@ public class Human {
                 ", bornDate=" + bornDate +
                 '}';
     }
+    public int Age(){
+        int year;
+    }
 }
