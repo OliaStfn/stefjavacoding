@@ -23,6 +23,7 @@ public class Employee extends Human {
 
     public Employee(String name, String surname, int year, int month, int day, double salary) {
         super(name, surname, year, month, day);
+        setId();
         this.salary = salary;
         date_of_begin = new GregorianCalendar();
         marks = new Vector<Mark>();
