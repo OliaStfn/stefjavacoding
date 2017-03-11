@@ -11,6 +11,7 @@ public class Menu {
                 "5-Sort products\n 6-Add product to the basket\n 7- Add to list favorites\n" +
                 "0- Exit");
     }while(x!=0);
+
     switch(x){
         case 1: break;
         case 2: break;
