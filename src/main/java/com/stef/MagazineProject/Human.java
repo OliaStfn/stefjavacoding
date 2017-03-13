@@ -2,6 +2,7 @@ package com.stef.MagazineProject;
 
 
 import java.util.GregorianCalendar;
+import java.util.Scanner;
 
 public class Human {
     private String name;
@@ -26,6 +27,12 @@ public class Human {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setName() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Введіть ваше імя:");
+        this.name = input.next();
     }
 
     public String getSurname() {

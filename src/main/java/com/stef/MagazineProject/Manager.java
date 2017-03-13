@@ -10,4 +10,9 @@ public class Manager extends Employee {
     public void setProductofStock(int productofStock) {
         this.productofStock = productofStock;
     }
+
+    @Override
+    public void raiseSalary() {
+        setSalary(getSalary()+getSalary()*0.15);
+    }
 }
