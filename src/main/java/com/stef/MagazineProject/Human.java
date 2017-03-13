@@ -50,7 +50,7 @@ public class Human {
                 '}';
     }
 
-    public int Age() {
+    public int getAge() {
         int year;
         GregorianCalendar current = new GregorianCalendar();
         year = current.get(GregorianCalendar.YEAR) - bornDate.get(GregorianCalendar.YEAR);

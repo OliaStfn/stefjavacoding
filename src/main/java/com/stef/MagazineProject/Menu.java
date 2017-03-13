@@ -1,7 +1,7 @@
 package com.stef.MagazineProject;
 
 public class Menu {
-    public static void menu{
+    public static void menu(){
 
     int x=0;
     System.out.println("Welcome to the internet shop");

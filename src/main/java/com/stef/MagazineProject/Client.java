@@ -37,6 +37,7 @@ public class Client extends Human {
     public void setAddress(String address) {
         this.address = address;
     }
+
     public void setId() {
         id = nextId;
         nextId++;
