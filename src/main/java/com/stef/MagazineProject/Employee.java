@@ -30,7 +30,7 @@ public class Employee extends Human {
     }
 
     public void raiseSalary() {
-        this.salary += salary*0.10;
+        this.salary += salary * 0.10;
     }
 
     public void getExperience() {
@@ -116,5 +116,7 @@ public class Employee extends Human {
                 '}';
     }
 
-
+    public void setBonus() {
+        salary += salary * 0.1;
+    }
 }
