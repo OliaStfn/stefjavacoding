@@ -2,26 +2,26 @@ package com.stef.MagazineProject;
 
 public class Manager extends Employee {
 
-    private int phone;
+    private String phone;
     private String department;
 
-    public Manager(int phone, String department) {
+    public Manager() {
         super();
         this.phone = phone;
         this.department = department;
     }
 
-    public Manager(String name, String surname, int year, int month, int day, double salary, int phone, String department) {
+    public Manager(String name, String surname, int year, int month, int day, double salary, String phone, String department) {
         super(name, surname, year, month, day, salary);
         this.phone = phone;
         this.department = department;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -41,5 +41,14 @@ public class Manager extends Employee {
     @Override
     public void setBonus() {
         setSalary(getSalary() + getSalary() * 0.2);
+    }
+
+    @Override
+    public String toString() {
+        return "Manager{" +
+                "phone=" + phone +
+                ", department='" + department + '\'' +
+                super.toString() +
+                '}';
     }
 }

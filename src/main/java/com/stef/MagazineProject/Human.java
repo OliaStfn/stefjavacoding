@@ -4,7 +4,7 @@ package com.stef.MagazineProject;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
-public class Human {
+public abstract class Human {
     private String name;
     private String surname;
     private GregorianCalendar bornDate;
@@ -47,16 +47,6 @@ public class Human {
         return bornDate;
     }
 
-
-    @Override
-    public String toString() {
-        return "Human{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", bornDate=" + bornDate +
-                '}';
-    }
-
     public int getAge() {
         int year;
         GregorianCalendar current = new GregorianCalendar();
@@ -70,4 +60,6 @@ public class Human {
         }
         return year;
     }
+
+   // public abstract void showInformation();
 }

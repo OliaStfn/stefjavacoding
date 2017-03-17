@@ -119,4 +119,8 @@ public class Employee extends Human {
     public void setBonus() {
         salary += salary * 0.1;
     }
+
+    public void showInformation() {
+        System.out.println("Some information");
+    }
 }

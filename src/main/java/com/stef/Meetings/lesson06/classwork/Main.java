@@ -9,7 +9,7 @@ public class Main {
         int x = 10;
 
         //Human obj = new Product();
-        Human obj = new Human();
+       /* Human obj = new Human();
         Human ob1;
         Human ob2;
 
@@ -19,7 +19,7 @@ public class Main {
         ob2 = ob1;
 
         System.out.println(ob1.getName());
-        System.out.println(ob2.getName());
+        System.out.println(ob2.getName());*/
 
 
 
