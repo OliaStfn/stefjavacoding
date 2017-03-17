@@ -12,14 +12,11 @@ public class Main {
         String name = object.getName();
         String surname = object.getSurname();
 
-        // new test connection
-        // new line 3
 
         System.out.println("Start task 3001");
         System.out.println("Finish task 3001");
 
 
-        //my line
 
         System.out.println("Start task 3002");
         System.out.println("Finish task 3002");
