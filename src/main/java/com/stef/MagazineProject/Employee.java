@@ -13,7 +13,9 @@ public class Employee extends Human {
     private Vector<Mark> marks;
 
     public Employee() {
-        super();
+        setName("name");
+        setSurname("surname");
+        setBornDate(new GregorianCalendar(1990, 01, 01));
         setId();
         salary = 2000;
         rating = 0;
@@ -22,7 +24,9 @@ public class Employee extends Human {
     }
 
     public Employee(String name, String surname, int year, int month, int day, double salary) {
-        super(name, surname, year, month, day);
+        setName(name);
+        setSurname(surname);
+        setBornDate(new GregorianCalendar(year, month, day));
         setId();
         this.salary = salary;
         date_of_begin = new GregorianCalendar();
@@ -120,7 +124,5 @@ public class Employee extends Human {
         salary += salary * 0.1;
     }
 
-    public void showInformation() {
-        System.out.println("Some information");
-    }
+
 }

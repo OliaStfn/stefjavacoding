@@ -1,5 +1,7 @@
 package com.stef.MagazineProject;
 
+import java.util.GregorianCalendar;
+
 public class Client extends Human {
     private static int nextId = 1;
     private int id;
@@ -7,7 +9,9 @@ public class Client extends Human {
     private String address;
 
     public Client() {
-        super();
+        setName("name");
+        setSurname("surname");
+        setBornDate(new GregorianCalendar(1990, 01, 01));
         setId();
         phoneNumber = "none";
         address = "none";
@@ -16,7 +20,9 @@ public class Client extends Human {
     public Client(String name, String surname,
                   int year, int month, int day,
                   String phoneNumber, String address) {
-        super(name, surname, year, month, day);
+        setName(name);
+        setSurname(surname);
+        setBornDate(new GregorianCalendar(year, month, day));
         setId();
         this.phoneNumber = phoneNumber;
         this.address = address;
@@ -43,5 +49,12 @@ public class Client extends Human {
         nextId++;
     }
 
-
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

@@ -2,23 +2,14 @@ package com.stef.MagazineProject;
 
 
 import java.util.GregorianCalendar;
-import java.util.Scanner;
 
 public abstract class Human {
     private String name;
     private String surname;
     private GregorianCalendar bornDate;
 
-    public Human() {
-        name = "name";
-        surname = "surname";
-        bornDate = new GregorianCalendar(1990, 01, 01);
-    }
-
-    public Human(String name, String surname, int year, int month, int day) {
-        setName(name);
-        setSurname(surname);
-        bornDate = new GregorianCalendar(year, month, day);
+    public void setBornDate(GregorianCalendar bornDate) {
+        this.bornDate = bornDate;
     }
 
     public String getName() {
@@ -27,12 +18,6 @@ public abstract class Human {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setName() {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Введіть ваше імя:");
-        this.name = input.next();
     }
 
     public String getSurname() {
