@@ -40,7 +40,7 @@ public class Manager extends Employee {
 
     @Override
     public void setBonus() {
-        setSalary(getSalary() + getSalary() * 0.2);
+        setSalary(getSalary() + getSalary() * 0.25);
     }
 
     @Override
