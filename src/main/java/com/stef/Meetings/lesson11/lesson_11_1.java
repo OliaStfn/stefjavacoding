@@ -1,6 +1,5 @@
 package com.stef.Meetings.lesson11;
 
-import com.stef.MagazineProject.Consulter;
 import com.stef.MagazineProject.Employee;
 import com.stef.MagazineProject.Manager;
 import com.stef.MagazineProject.Officer;

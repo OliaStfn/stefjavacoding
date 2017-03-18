@@ -1,6 +1,6 @@
 package com.stef.MagazineProject;
 
-public class Consulter extends Employee {
+public class Consultant extends Employee {
 
     private int order;
 

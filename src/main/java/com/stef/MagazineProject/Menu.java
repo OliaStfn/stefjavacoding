@@ -24,11 +24,11 @@ public class Menu {
 
     }
 
-    private static int choise() {
+    private static int choice() {
         Scanner in = new Scanner(System.in);
         int temp = -1;
         do {
-            System.out.println("Enter your choise: ");
+            System.out.println("Enter your choice: ");
             temp = in.nextInt();
         } while (temp < 0 || temp >= 7);
 
