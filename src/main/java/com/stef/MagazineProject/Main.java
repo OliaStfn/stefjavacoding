@@ -13,19 +13,10 @@ public class Main {
        // String surname = object.getSurname();
 
         Employee em = new Manager();
+        GregorianCalendar born=null;
+        em.setBornDate(born);
 
         em.setBonus();
-
-
-
-
-        System.out.println("Start task 3001");
-        System.out.println("Finish task 3001");
-
-
-
-        System.out.println("Start task 3002");
-        System.out.println("Finish task 3002");
 
 
         Product pr1 = new Product(1, "Galaxy S", 1000, "Samsung",

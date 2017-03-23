@@ -9,7 +9,11 @@ public abstract class Human {
     private GregorianCalendar bornDate;
 
     public void setBornDate(GregorianCalendar bornDate) {
-        this.bornDate = bornDate;
+        try {
+            this.bornDate = bornDate;
+        }catch (NullPointerException e){
+            System.out.println("Exception: "+e);
+        }
     }
 
     public String getName() {

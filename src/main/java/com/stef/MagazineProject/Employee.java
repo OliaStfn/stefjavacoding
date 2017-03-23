@@ -2,7 +2,7 @@ package com.stef.MagazineProject;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.Vector;
+
 
 public class Employee extends Human {
     private static int nextId = 1;
