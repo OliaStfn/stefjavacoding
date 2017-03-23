@@ -1,5 +1,6 @@
 package com.stef.MagazineProject;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Vector;
 
@@ -10,7 +11,7 @@ public class Employee extends Human {
     private GregorianCalendar date_of_begin;
     private double salary;
     private double rating;
-    private Vector<Mark> marks;
+    private ArrayList<Mark> marks;
 
     public Employee() {
         setName("name");
@@ -20,7 +21,7 @@ public class Employee extends Human {
         salary = 2000;
         rating = 0;
         date_of_begin = new GregorianCalendar(2016, 5, 5);
-        marks = new Vector<Mark>();
+        marks = new ArrayList<Mark>();
     }
 
     public Employee(String name, String surname, int year, int month, int day, double salary) {
@@ -30,7 +31,7 @@ public class Employee extends Human {
         setId();
         this.salary = salary;
         date_of_begin = new GregorianCalendar();
-        marks = new Vector<Mark>();
+        marks = new ArrayList<Mark>();
     }
 
     public void raiseSalary() {
@@ -88,9 +89,9 @@ public class Employee extends Human {
         GregorianCalendar current = new GregorianCalendar();
 
         for (int i = 0; i < marks.size(); i++) {
-            if (marks.elementAt(i).getTime().get(GregorianCalendar.MONTH) == current.get(GregorianCalendar.MONTH)) {
+            if (marks.get(i).getTime().get(GregorianCalendar.MONTH) == current.get(GregorianCalendar.MONTH)) {
                 count++;
-                sum += marks.elementAt(i).getMark();
+                sum += marks.get(i).getMark();
             }
         }
         rating = sum / count;
