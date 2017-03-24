@@ -11,12 +11,8 @@ public class lesson12_3 {
 
     }
 
-    static void demo() {
-        try {
+    static void demo() throws ArithmeticException{
+
             throw new ArithmeticException("Демонстрація");
-        } catch (ArithmeticException e) {
-            System.out.println(e.getMessage());
-            throw e;
-        }
     }
 }
