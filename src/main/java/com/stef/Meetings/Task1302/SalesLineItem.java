@@ -3,7 +3,7 @@ package com.stef.Meetings.Task1302;
 
 public class SalesLineItem {
     private int quantity;
-    ProductSpecification product;
+    Product product;
 
     public int getQuantity() {
         return quantity;
@@ -13,22 +13,22 @@ public class SalesLineItem {
         this.quantity = quantity;
     }
 
-    public ProductSpecification getProduct() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(ProductSpecification product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 
     public SalesLineItem(int quantity, String description, double price) {
         this.quantity = quantity;
-        product = new ProductSpecification(description, price);
+        product = new Product(description, price);
     }
 
     public SalesLineItem() {
         quantity = 1;
-        product = new ProductSpecification();
+        product = new Product();
     }
     public double sumLine(){
      return quantity*product.getPrice();

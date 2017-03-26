@@ -1,6 +1,6 @@
 package com.stef.Meetings.Task1302;
 
-public class ProductSpecification {
+public class Product {
     private String description;
     private double price;
     private static int nextID = 1;
@@ -31,15 +31,24 @@ public class ProductSpecification {
         nextID++;
     }
 
-    public ProductSpecification(String description, double price) {
+    public Product(String description, double price) {
         this.description = description;
         this.price = price;
         setItemID();
     }
 
-    public ProductSpecification() {
+    public Product() {
         description = "none";
         price = 0;
         setItemID();
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "itemID=" + itemID +
+                "description='" + description + '\'' +
+                ", price=" + price +
+                '}';
     }
 }
