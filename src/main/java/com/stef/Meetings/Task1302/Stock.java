@@ -7,7 +7,7 @@ public class Stock {
     private static ArrayList<Product> goods = new ArrayList<Product>();
 
     public static void addProduct(String desc, double price) {
-        goods.add(new Product(desc, price));
+            goods.add(new Product(desc, price));
     }
     public static Product findProduct(){
         for(Product product : goods){
