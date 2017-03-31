@@ -1,6 +1,8 @@
 package com.stef.Meetings.Task1302;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable{
     private String description;
     private double price;
     private static int nextID = 1;

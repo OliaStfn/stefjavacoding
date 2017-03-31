@@ -2,6 +2,7 @@ package com.stef.Meetings.Task1302;
 
 import org.apache.log4j.Logger;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,6 +20,27 @@ public class Stock {
             System.out.println("Price less than zero");
             log.info("Price less than zero" + e.getMessage());
         }
+    }
+
+    public static void addProduct() {
+        Scanner in = new Scanner(System.in);
+        String description = "";
+        double price = 0;
+        int repeat = -1;
+        do {
+            System.out.print("Enter product description: ");
+            description = in.next();
+            System.out.print("Enter price of product: ");
+            price = in.nextDouble();
+            goods.add(new Product(description, price));
+
+            System.out.println("Add another product?");
+            System.out.print("1-YES / 0-NO :");
+            repeat = in.nextInt();
+
+        } while (repeat != 0);
+
+        saveProductToFile();
 
 
     }
@@ -37,5 +59,39 @@ public class Stock {
             }
         }
         return goods.get(inputID);
+    }
+
+    public static void saveProductToFile() {
+        try {
+            FileOutputStream file = new FileOutputStream("product_catalog.ser");
+            ObjectOutputStream obj = new ObjectOutputStream(file);
+
+            obj.writeObject(goods);
+            file.close();
+            obj.close();
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void loadProductFromFIle() {
+        try {
+            FileInputStream file = new FileInputStream("product_catalog.ser");
+            ObjectInputStream obj = new ObjectInputStream(file);
+
+            goods = (ArrayList<Product>) obj.readObject();
+            file.close();
+            obj.close();
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+
+        } catch (ClassNotFoundException e) {
+
+        }
+
     }
 }
