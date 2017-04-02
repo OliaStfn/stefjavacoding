@@ -49,4 +49,12 @@ public class Sale {
         return temp;
     }
 
+    @Override
+    public String toString() {
+        return "Sale{" +
+                "time=" + time +
+                ", date=" + date +
+                ", lines=" + lines +
+                '}';
+    }
 }

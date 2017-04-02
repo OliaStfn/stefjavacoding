@@ -33,4 +33,12 @@ public class SalesLineItem {
     public double sumLine(){
      return quantity*product.getPrice();
     }
+
+    @Override
+    public String toString() {
+        return "SalesLineItem{" +
+                "quantity=" + quantity +
+                ", product=" + product +
+                '}';
+    }
 }

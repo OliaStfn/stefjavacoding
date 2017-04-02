@@ -39,18 +39,18 @@ public class Employee extends Human {
     }
 
     public void getExperience() {
-        GregorianCalendar curentDate = new GregorianCalendar();
+        GregorianCalendar currentDate = new GregorianCalendar();
         int year, month, date, hour, minutes;
 
-        year = curentDate.get(GregorianCalendar.YEAR)
+        year = currentDate.get(GregorianCalendar.YEAR)
                 - date_of_begin.get(GregorianCalendar.YEAR);
-        month = curentDate.get(GregorianCalendar.MONTH)
+        month = currentDate.get(GregorianCalendar.MONTH)
                 - date_of_begin.get(GregorianCalendar.MONTH);
-        date = curentDate.get(GregorianCalendar.DATE)
+        date = currentDate.get(GregorianCalendar.DATE)
                 - date_of_begin.get(GregorianCalendar.DATE);
-        hour = curentDate.get(GregorianCalendar.HOUR)
+        hour = currentDate.get(GregorianCalendar.HOUR)
                 - date_of_begin.get(GregorianCalendar.HOUR);
-        minutes = curentDate.get(GregorianCalendar.MINUTE)
+        minutes = currentDate.get(GregorianCalendar.MINUTE)
                 - date_of_begin.get(GregorianCalendar.MINUTE);
 
         if (month < 0) {
