@@ -59,5 +59,6 @@ public class Sale {
                 ", date=" + date +
                 ", lines=" + lines.toString() +
                 '}';
+
     }
 }

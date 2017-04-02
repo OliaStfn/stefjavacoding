@@ -37,6 +37,7 @@ public class Register implements Serializable {
                 log.error("Quantity less one" + e.getMessage());
             }
         } while (repeat != 0);
+        log.info(sale.toString());
     }
 
     public static void saveSaleToFile() {
@@ -71,4 +72,5 @@ public class Register implements Serializable {
 
         }
     }
+
 }
