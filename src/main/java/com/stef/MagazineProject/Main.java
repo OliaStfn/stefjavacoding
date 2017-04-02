@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
 
         Employee em = new Manager();
-        GregorianCalendar born=null;
+        GregorianCalendar born = null;
         em.setBornDate(born);
 
         em.setBonus();
