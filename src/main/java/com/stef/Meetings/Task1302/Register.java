@@ -2,10 +2,11 @@ package com.stef.Meetings.Task1302;
 
 import org.apache.log4j.Logger;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Register {
+public class Register implements Serializable {
     private static ArrayList<Sale> sales = new ArrayList<Sale>();
     private static final Logger log = Logger.getLogger(Register.class);
 
