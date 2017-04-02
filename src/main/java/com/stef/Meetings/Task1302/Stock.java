@@ -92,6 +92,15 @@ public class Stock {
         } catch (ClassNotFoundException e) {
 
         }
+        int oldMaxID = 0;
+
+        for(Product product : goods){
+            if(product.getItemID()>oldMaxID){
+                oldMaxID=product.getItemID();
+            }
+        }
+        Product.setNextID(oldMaxID+1);
+
 
     }
 }

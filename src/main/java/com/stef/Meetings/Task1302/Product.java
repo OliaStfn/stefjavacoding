@@ -45,12 +45,16 @@ public class Product implements Serializable{
         setItemID();
     }
 
+    public static void setNextID(int id){
+        nextID = id;
+    }
+
     @Override
     public String toString() {
-        return "Product{" +
-                "itemID=" + itemID +
-                "description='" + description + '\'' +
-                ", price=" + price +
+        return "Product{ " +
+                "itemID = " + itemID +
+                " description = '" + description + '\'' +
+                ", price = " + price +
                 '}';
     }
 }

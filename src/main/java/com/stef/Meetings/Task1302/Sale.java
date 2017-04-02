@@ -55,9 +55,7 @@ public class Sale {
     @Override
     public String toString() {
         return "Sale{" +
-                "time=" + time +
-                ", date=" + date +
-                ", lines=" + lines.toString() +
+                " lines=" + lines.toString() +
                 '}';
 
     }

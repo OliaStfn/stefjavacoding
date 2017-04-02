@@ -53,7 +53,6 @@ public class Register implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public static void loadSaleFromFIle() {
