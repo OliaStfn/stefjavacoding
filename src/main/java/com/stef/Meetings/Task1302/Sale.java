@@ -3,6 +3,8 @@ package com.stef.Meetings.Task1302;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
+
 public class Sale {
     private GregorianCalendar time, date;
     ArrayList<SalesLineItem> lines;
@@ -39,6 +41,7 @@ public class Sale {
 
     public void addLine(int quantity, String description, double price) {
         lines.add(new SalesLineItem(quantity, description, price));
+
     }
 
     public double allPrice() {
@@ -54,7 +57,7 @@ public class Sale {
         return "Sale{" +
                 "time=" + time +
                 ", date=" + date +
-                ", lines=" + lines +
+                ", lines=" + lines.toString() +
                 '}';
     }
 }

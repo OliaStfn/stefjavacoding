@@ -38,7 +38,7 @@ public class SalesLineItem {
     public String toString() {
         return "SalesLineItem{" +
                 "quantity=" + quantity +
-                ", product=" + product +
+                ", product=" + product.toString() +
                 '}';
     }
 }
