@@ -6,6 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class Register implements Serializable {
     private static ArrayList<Sale> sales = new ArrayList<Sale>();
     private static final Logger log = Logger.getLogger(Register.class);

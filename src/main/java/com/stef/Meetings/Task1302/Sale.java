@@ -3,7 +3,7 @@ package com.stef.Meetings.Task1302;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
+
 
 public class Sale {
     private GregorianCalendar time, date;
