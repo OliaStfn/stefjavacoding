@@ -2,7 +2,7 @@ package com.stef.Meetings.Task1302;
 
 import org.apache.log4j.Logger;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -38,4 +38,36 @@ public class Register implements Serializable {
         } while (repeat != 0);
     }
 
+    public static void saveSaleToFile() {
+        try {
+            FileOutputStream files = new FileOutputStream("sale_catalog.ser");
+            ObjectOutputStream object = new ObjectOutputStream(files);
+
+            object.writeObject(sales);
+            files.close();
+            object.close();
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void loadSaleFromFIle() {
+        try {
+            FileInputStream files = new FileInputStream("sale_catalog.ser");
+            ObjectInputStream object = new ObjectInputStream(files);
+
+            sales = (ArrayList<Sale>) object.readObject();
+            files.close();
+            object.close();
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+
+        } catch (ClassNotFoundException e) {
+
+        }
+    }
 }
