@@ -33,5 +33,6 @@ public class Stack implements IntfStack{
         if (top >= size - 1) {
             return 1;
         }
+
     }
 }
