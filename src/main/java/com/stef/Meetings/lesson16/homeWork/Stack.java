@@ -1,18 +1,18 @@
 package com.stef.Meetings.lesson16.homeWork;
 
-public class Stack implements IntfStack{
+public class Stack implements IntfStack {
     private Account[] arr;
-    private  int top;
+    private int top;
     private int size;
 
     public Stack(int size) {
-        top=-1;
+        top = -1;
         this.size = size;
-        arr= new Account[size];
+        arr = new Account[size];
     }
 
     public void push(Account item) {
-    arr[++top]= item;
+        arr[++top] = item;
     }
 
     public Account pop() {
@@ -23,16 +23,17 @@ public class Stack implements IntfStack{
         return arr[top];
     }
 
-    public int isEmpty()
-    {
-        if(top==-1) {
+    public int isEmpty() {
+        if (top == -1) {
             return 0;
-        }return  1;
+        }
+        return 1;
     }
 
     public int isFull() {
         if (top >= size - 1) {
             return 1;
-        }return 0;
+        }
+        return 0;
     }
 }
