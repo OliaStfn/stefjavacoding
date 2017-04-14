@@ -1,7 +1,7 @@
 package com.stef.Meetings.lesson18;
 
 public class Factory {
-    public static IDeveloperFactory creatDevFactoryByType(String str) {
+    public static IDeveloperFactory createDevFactoryByType(String str) {
         if (str.equalsIgnoreCase("java")) {
             return new JavaDeveloperFactory();
         } else if (str.equalsIgnoreCase("c#") || str.equalsIgnoreCase("csharp"))
@@ -9,14 +9,14 @@ public class Factory {
         else throw new RuntimeException(str + " is not defined");
     }
 
-    public static ITesterFactory creatTestFactoryByType(String str) {
+    public static ITesterFactory createTestFactoryByType(String str) {
         if (str.equalsIgnoreCase("qa")) {
             return new QaTesterFactory();
         } else if (str.equalsIgnoreCase("qc")) {
             return new QcTesterFactory();
         } else throw new RuntimeException(str + " is not defined");
     }
-    public static IManagerFactory creatManFactoryByType(String str) {
+    public static IManagerFactory createManFactoryByType(String str) {
         if (str.equalsIgnoreCase("project")) {
             return new ProjectManagerFactory();
         } else if (str.equalsIgnoreCase("team")) {

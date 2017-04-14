@@ -5,15 +5,16 @@ public class Runner {
         /*
         DF - Developer Factory
          */
-        IDeveloperFactory DF = Factory.creatDevFactoryByType("java");
+
+        IDeveloperFactory DF = Factory.createDevFactoryByType("java");
         IDeveloper dev1 = DF.creatDeveloper();
         dev1.writeCode();
 
-        ITesterFactory TF = Factory.creatTestFactoryByType("qa");
+        ITesterFactory TF = Factory.createTestFactoryByType("qa");
         ITester ts1 = TF.createTester();
         ts1.testCode();
 
-        IManagerFactory MF = Factory.creatManFactoryByType("project");
+        IManagerFactory MF = Factory.createManFactoryByType("project");
         IManager mp1 = MF.createManager();
         mp1.creatTask();
 
