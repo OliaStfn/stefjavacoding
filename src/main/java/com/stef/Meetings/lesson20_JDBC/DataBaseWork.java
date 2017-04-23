@@ -14,6 +14,7 @@ public class DataBaseWork {
 
         try {
             Class.forName(diverName); // Завантажуємо клас драйвера
+
         } catch (ClassNotFoundException e) {
             System.out.println(e.getMessage());
         }
