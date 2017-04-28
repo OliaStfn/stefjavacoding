@@ -122,9 +122,31 @@ public class DataBaseWork {
             con = getConnection();
             stm = con.createStatement();
             stm.executeUpdate(sql_query);
-            log.info("Product was delete successfully");
+            log.info("Product was deleted successfully");
         } catch (SQLException e) {
             log.error("Product wasn't delete");
+            log.error(e.getMessage());
+        } finally {
+            if (con != null) con.close();
+            if (stm != null) stm.close();
+        }
+
+    }
+    public static void createProduct() throws SQLException {
+        Connection con = null;
+        Statement stm = null;
+
+        String sql_query = "INSERT INTO goods"+
+                "(id,name,price,vendor,productionDate,expdate)"+
+                "VALUES (7,'HotDog',25,'Chicken hut','2017-04-28','2017-04-30')";
+
+        try {
+            con = getConnection();
+            stm = con.createStatement();
+            stm.executeUpdate(sql_query);
+            log.info("Product was created successfully");
+        } catch (SQLException e) {
+            log.error("Product wasn't create");
             log.error(e.getMessage());
         } finally {
             if (con != null) con.close();
