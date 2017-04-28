@@ -6,6 +6,11 @@ import static org.junit.Assert.*;
 
 public class DataBaseWorkTest {
     @Test
+    public void addNewProductPS() throws Exception {
+        DataBaseWork.addNewProductPS();
+    }
+
+    @Test
     public void deleteProduct() throws Exception {
         DataBaseWork.deleteProduct();
     }

@@ -13,6 +13,10 @@ public class DataBaseWork {
     private static String PASSWORD = "942lucxf";
 
 
+    private static final String INSERT_NEW = "INSERT INTO goods"
+            + "(ID,NAME,PRICE,VENDOR,PRODUCTIONDATE,EXPDATE)"
+            + " VALUES (?, ?, ?, ?, ?, ?)";
+
     public static Connection getConnection() {
         Connection connection = null;
 
@@ -34,30 +38,6 @@ public class DataBaseWork {
         return connection;
     }
 
-    public static void addNewProduct() throws SQLException {
-        Connection con = null;
-        Statement stm = null;
-
-        String sql_query = "INSERT INTO goods"
-                + "(ID,NAME,PRICE,VENDOR,PRODUCTIONDATE,EXPDATE)"
-                + " VALUES (6, 'burger', 40.50, 'RoyalBurger', '2017-4-23', '2017-4-27')";
-
-
-        try {
-            con = getConnection();
-            stm = con.createStatement();
-            stm.executeUpdate(sql_query);
-            log.info("Product was added successfully");
-        } catch (SQLException e) {
-            log.error("Product wasn't added");
-            log.error(e.getMessage());
-        } finally {
-            if (con != null) con.close();
-            if (stm != null) stm.close();
-        }
-
-
-    }
 
     public static void updateProduct() throws SQLException {
         Connection con = null;
@@ -112,6 +92,7 @@ public class DataBaseWork {
 
 
     }
+
     public static void deleteProduct() throws SQLException {
         Connection con = null;
         Statement stm = null;
@@ -132,12 +113,13 @@ public class DataBaseWork {
         }
 
     }
+
     public static void createProduct() throws SQLException {
         Connection con = null;
         Statement stm = null;
 
-        String sql_query = "INSERT INTO goods"+
-                "(id,name,price,vendor,productionDate,expdate)"+
+        String sql_query = "INSERT INTO goods" +
+                "(id,name,price,vendor,productionDate,expdate)" +
                 "VALUES (7,'HotDog',25,'Chicken hut','2017-04-28','2017-04-30')";
 
         try {
@@ -153,6 +135,65 @@ public class DataBaseWork {
             if (stm != null) stm.close();
         }
 
+    }
+
+
+    public static void addNewProduct() throws SQLException {
+        Connection con = null;
+        Statement stm = null;
+
+        /*String sql_query = "INSERT INTO goods"
+                + "(ID,NAME,PRICE,VENDOR,PRODUCTIONDATE,EXPDATE)"
+                + " VALUES (6, 'burger', 40.50, 'RoyalBurger', '2017-4-23', '2017-4-27')";*/
+
+        try {
+            con = getConnection();
+            stm = con.createStatement();
+
+            stm.addBatch("INSERT INTO goods"
+                    + "(ID,NAME,PRICE,VENDOR,PRODUCTIONDATE,EXPDATE)"
+                    + " VALUES (7, 'burger', 40.50, 'RoyalBurger', '2017-4-23', '2017-4-27')");
+
+            stm.addBatch("INSERT INTO goods"
+                    + "(ID,NAME,PRICE,VENDOR,PRODUCTIONDATE,EXPDATE)"
+                    + " VALUES (8, 'burger', 40.50, 'RoyalBurger', '2017-4-23', '2017-4-27')");
+
+            stm.executeBatch();
+            stm.clearBatch();
+            log.info("Product was added successfully");
+        } catch (SQLException e) {
+            log.error("Product wasn't added");
+            log.error(e.getMessage());
+        } finally {
+            if (con != null) con.close();
+            if (stm != null) stm.close();
+        }
+    }
+
+    public static void addNewProductPS() throws SQLException {
+        Connection con = null;
+        PreparedStatement prst = null;
+
+        try {
+            con = getConnection();
+            prst = con.prepareStatement(INSERT_NEW);
+
+            prst.setInt(1, 9);
+            prst.setString(2,"mohito");
+            prst.setDouble(3,30.0);
+            prst.setString(4,"pizza+");
+            prst.setDate(5, java.sql.Date.valueOf("2017-04-28"));
+            prst.setDate(6,java.sql.Date.valueOf("2017-04-30"));
+            prst.execute();
+
+            log.info("Product was added successfully");
+        } catch (SQLException e) {
+            log.error("Product wasn't added");
+            log.error(e.getMessage());
+        } finally {
+            if (con != null) con.close();
+            if (prst != null) prst.close();
+        }
     }
 
 }
