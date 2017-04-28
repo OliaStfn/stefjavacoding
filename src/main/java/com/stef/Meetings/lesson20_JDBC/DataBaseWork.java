@@ -112,7 +112,24 @@ public class DataBaseWork {
 
 
     }
+    public static void deleteProduct() throws SQLException {
+        Connection con = null;
+        Statement stm = null;
 
+        String sql_query = "DELETE FROM goods WHERE id=2;";
 
+        try {
+            con = getConnection();
+            stm = con.createStatement();
+            stm.executeUpdate(sql_query);
+            log.info("Product was delete successfully");
+        } catch (SQLException e) {
+            log.error("Product wasn't delete");
+            log.error(e.getMessage());
+        } finally {
+            if (con != null) con.close();
+            if (stm != null) stm.close();
+        }
 
+    }
 }
