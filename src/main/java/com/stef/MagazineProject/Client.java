@@ -49,6 +49,10 @@ public class Client extends Human {
         nextId++;
     }
 
+    public int getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "Client{" +

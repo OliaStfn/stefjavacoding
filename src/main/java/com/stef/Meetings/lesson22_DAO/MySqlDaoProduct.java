@@ -5,7 +5,6 @@ import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 
 public class MySqlDaoProduct implements ProductDao {
     private static final Logger log = Logger.getLogger(MySqlDaoProduct.class);
