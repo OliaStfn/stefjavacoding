@@ -36,7 +36,7 @@ public class MySqlDaoFactory implements DaoFactory {
     }
 
     public ProductDao getProductDao(Connection connection) {
-        return new MySqlProductDao(connection);
+        return new MySqlDaoProduct(connection);
     }
 
     //public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Integer> implements GenericDao<T, PK>
