@@ -14,4 +14,11 @@ public class Status<P extends Number> {
         }
         return sum / numbers.length;
     }
+
+    public boolean sameAvarege(Status<?> obj){
+        if(avarege()==obj.avarege()){
+            return  true;
+        }else return false;
+
+    }
 }

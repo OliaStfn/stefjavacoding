@@ -19,7 +19,7 @@ public class SelectionSortTest {
         System.out.println();
 
         SelectionSort<Integer> obj = new SelectionSort<Integer>(arr);
-        SelectionSort<Double> obj1 = new SelectionSort<>(array);
+        SelectionSort<Double> obj1 = new SelectionSort<Double>(array);
 
         arr = obj.selectionSort();
         array = obj1.selectionSort();

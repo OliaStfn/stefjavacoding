@@ -19,6 +19,8 @@ public class StatusTest {
         System.out.println(intObj.avarege());
         System.out.println(doubleObj.avarege());
 
+        System.out.println(intObj.sameAvarege(doubleObj));
+
 
     }
 
