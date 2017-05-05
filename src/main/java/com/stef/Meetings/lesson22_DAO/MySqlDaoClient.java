@@ -5,6 +5,8 @@ import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class MySqlDaoClient implements ClientDao {
     private static final Logger log = Logger.getLogger(MySqlDaoClient.class);
@@ -27,7 +29,7 @@ public class MySqlDaoClient implements ClientDao {
         this.connection = connection;
     }
 
-    @Override
+
     public Client create(Client client) throws SQLException {
         PreparedStatement prst = null;
 
@@ -52,7 +54,7 @@ public class MySqlDaoClient implements ClientDao {
         return client;
     }
 
-    @Override
+
     public Client read(int id) throws SQLException {
         PreparedStatement prst = null;
         Client client = null;
@@ -61,15 +63,19 @@ public class MySqlDaoClient implements ClientDao {
             prst = connection.prepareStatement(SELECT_NEW);
             prst.setInt(1, id);
             ResultSet rs = prst.executeQuery();
+            Calendar cal = Calendar.getInstance();
+            GregorianCalendar tempDate;
 
             while (rs.next()) {
                 int ID = rs.getInt("id");
                 String Name = rs.getString("name");
                 String Surname = rs.getString("Surname");
                 Date BornDate = rs.getDate("BornDate");
+                cal.setTime(BornDate);
+                tempDate = (GregorianCalendar) cal;
                 String PhoneNumber = rs.getString("PhoneNumber");
                 String Address = rs.getString("Address");
-                client = new Client(ID, Name, Surname, BornDate, PhoneNumber, Address);
+                client = new Client(ID, Name, Surname, tempDate, PhoneNumber, Address);
             }
         } catch (SQLException e) {
             log.error("Error in getting clients from DB");
@@ -81,7 +87,7 @@ public class MySqlDaoClient implements ClientDao {
         return client;
     }
 
-    @Override
+
     public void update(Client client) throws SQLException {
         PreparedStatement prst = null;
 
@@ -105,7 +111,7 @@ public class MySqlDaoClient implements ClientDao {
         }
     }
 
-    @Override
+
     public void delete(Client client) throws SQLException {
         PreparedStatement prst = null;
 
@@ -124,10 +130,12 @@ public class MySqlDaoClient implements ClientDao {
         }
     }
 
-    @Override
+
     public ArrayList<Client> readAll() throws SQLException {
         PreparedStatement prst = null;
-        ArrayList<Client> clients = new ArrayList<>();
+        ArrayList<Client> clients = new ArrayList<Client>();
+        Calendar cal = Calendar.getInstance();
+        GregorianCalendar tempDate;
 
         try {
 
@@ -139,10 +147,11 @@ public class MySqlDaoClient implements ClientDao {
                 String Name = rs.getString("name");
                 String Surname = rs.getString("Surname");
                 Date BornDate = rs.getDate("BornDate");
+                cal.setTime(BornDate);
+                tempDate = (GregorianCalendar) cal;
                 String PhoneNumber = rs.getString("PhoneNumber");
                 String Address = rs.getString("Address");
-                clients.add(new Client(ID, Name, Surname, BornDate, PhoneNumber, Address));
-
+                clients.add(new Client(ID, Name, Surname, tempDate, PhoneNumber, Address));
             }
         } catch (SQLException e) {
             log.error("Error in getting clients from DB");

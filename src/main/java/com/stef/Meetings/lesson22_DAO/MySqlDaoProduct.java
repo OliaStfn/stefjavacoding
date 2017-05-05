@@ -5,6 +5,8 @@ import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class MySqlDaoProduct implements ProductDao {
     private static final Logger log = Logger.getLogger(MySqlDaoProduct.class);
@@ -27,7 +29,7 @@ public class MySqlDaoProduct implements ProductDao {
         this.connection = connection;
     }
 
-    @Override
+
     public Product create(Product product) throws SQLException {
         PreparedStatement prst = null;
 
@@ -52,10 +54,13 @@ public class MySqlDaoProduct implements ProductDao {
         return product;
     }
 
-    @Override
+
     public Product read(int id) throws SQLException {
         PreparedStatement prst = null;
         Product product = null;
+        Calendar cal = Calendar.getInstance();
+        GregorianCalendar tempDate;
+        GregorianCalendar tempDate2;
 
         try {
             prst = connection.prepareStatement(SELECT_NEW);
@@ -68,8 +73,12 @@ public class MySqlDaoProduct implements ProductDao {
                 double price = rs.getDouble("price");
                 String vendor = rs.getString("vendor");
                 Date prDate = rs.getDate("productionDate");
+                cal.setTime(prDate);
+                tempDate = (GregorianCalendar) cal;
                 Date expDate = rs.getDate("expDate");
-                product = new Product(ID, name, price, vendor, prDate, expDate);
+                cal.setTime(prDate);
+                tempDate2 = (GregorianCalendar) cal;
+                product = new Product(ID, name, price, vendor, tempDate, tempDate2);
             }
         } catch (SQLException e) {
             log.error("Error in getting products from DB");
@@ -81,7 +90,7 @@ public class MySqlDaoProduct implements ProductDao {
         return product;
     }
 
-    @Override
+
     public void update(Product product) throws SQLException {
         PreparedStatement prst = null;
 
@@ -104,12 +113,11 @@ public class MySqlDaoProduct implements ProductDao {
         }
     }
 
-    @Override
+
     public void delete(Product product) throws SQLException {
         PreparedStatement prst = null;
 
         try {
-
             prst = connection.prepareStatement(DELETE_NEW);
             prst.setInt(1, product.getId());
             prst.executeUpdate();
@@ -123,10 +131,13 @@ public class MySqlDaoProduct implements ProductDao {
         }
     }
 
-    @Override
+
     public ArrayList<Product> readAll() throws SQLException {
         PreparedStatement prst = null;
-        ArrayList<Product> products = new ArrayList<>();
+        ArrayList<Product> products = new ArrayList<Product>();
+        Calendar cal = Calendar.getInstance();
+        GregorianCalendar tempDate;
+        GregorianCalendar tempDate2;
 
         try {
 
@@ -139,8 +150,13 @@ public class MySqlDaoProduct implements ProductDao {
                 double price = rs.getDouble("price");
                 String vendor = rs.getString("vendor");
                 Date prDate = rs.getDate("productionDate");
+                cal.setTime(prDate);
+                tempDate = (GregorianCalendar) cal;
                 Date expDate = rs.getDate("expDate");
-                products.add(new Product(ID, name, price, vendor, prDate, expDate));
+                cal.setTime(prDate);
+                tempDate2 = (GregorianCalendar) cal;
+
+                products.add(new Product(ID, name, price, vendor, tempDate, tempDate2));
 
             }
         } catch (SQLException e) {

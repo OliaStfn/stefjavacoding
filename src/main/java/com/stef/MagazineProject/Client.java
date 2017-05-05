@@ -28,6 +28,18 @@ public class Client extends Human {
         this.address = address;
     }
 
+    public Client(int id, String name, String surname, GregorianCalendar date,
+                  String phoneNumber, String address) {
+        setId(id);
+        setName(name);
+        setSurname(surname);
+        setBornDate(date);
+        setId();
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -47,6 +59,10 @@ public class Client extends Human {
     public void setId() {
         id = nextId;
         nextId++;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {
