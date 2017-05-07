@@ -1,4 +1,4 @@
-package com.stef.MagazineProject;
+package com.stef.MagazineProject.support;
 
 import java.util.Scanner;
 

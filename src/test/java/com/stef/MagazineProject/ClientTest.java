@@ -1,6 +1,6 @@
 package com.stef.MagazineProject;
 
-import org.junit.Assert;
+import com.stef.MagazineProject.domain.Client;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

@@ -1,7 +1,7 @@
 package com.stef.Meetings.lesson11;
 
-import com.stef.MagazineProject.Employee;
-import com.stef.MagazineProject.Human;
+import com.stef.MagazineProject.domain.Employee;
+import com.stef.MagazineProject.domain.Human;
 
 public class lesson11_2 {
     public static void main(String[] args) {

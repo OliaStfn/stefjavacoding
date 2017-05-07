@@ -23,15 +23,21 @@ public class SalesLineItem {
 
     public SalesLineItem(int quantity, String description, double price) {
         this.quantity = quantity;
-        product = new Product(description, price);
+        product = Product.create();
+        product.setDescription(description);
+        product.setPrice(price);
+        //product = new Product(description, price);
     }
+
+    //TODO #25.02 - Перевантаження конструктора + Узагальнення
 
     public SalesLineItem() {
         quantity = 1;
-        product = new Product();
+        product = Product.create();
     }
-    public double sumLine(){
-     return quantity*product.getPrice();
+
+    public double sumLine() {
+        return quantity * product.getPrice();
     }
 
     @Override

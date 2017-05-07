@@ -1,4 +1,8 @@
-package com.stef.MagazineProject;
+package com.stef.MagazineProject.support;
+
+import com.stef.MagazineProject.domain.Employee;
+import com.stef.MagazineProject.domain.Manager;
+import com.stef.MagazineProject.domain.Product;
 
 import java.util.GregorianCalendar;
 

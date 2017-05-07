@@ -1,8 +1,5 @@
 package com.stef.Meetings.lesson06.classwork;
 
-import com.stef.MagazineProject.Human;
-import com.stef.MagazineProject.Product;
-
 public class Main {
     public static void main(String[] args) {
 

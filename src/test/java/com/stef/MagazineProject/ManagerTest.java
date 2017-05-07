@@ -1,5 +1,7 @@
 package com.stef.MagazineProject;
 
+import com.stef.MagazineProject.domain.Employee;
+import com.stef.MagazineProject.domain.Manager;
 import org.junit.Test;
 
 import java.util.ArrayList;

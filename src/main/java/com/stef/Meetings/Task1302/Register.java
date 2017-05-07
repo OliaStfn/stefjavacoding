@@ -17,12 +17,12 @@ public class Register implements Serializable {
         return temp;
     }
 
-    public static void addItemsToSale(Sale sale) {
+    /*public static void addItemsToSale(Sale sale) {
         Scanner in = new Scanner(System.in);
         int repeat = -1;
         do {
             try {
-                Product pr1 = Stock.findProduct();
+                //Product pr1 = Stock.findProduct();
                 System.out.print("Enter quantity  of product: ");
                 int quantity = in.nextInt();
                 if (quantity <= 0) {
@@ -38,7 +38,7 @@ public class Register implements Serializable {
             }
         } while (repeat != 0);
         log.info(sale.toString());
-    }
+    }*/
 
     public static void saveSaleToFile() {
         try {

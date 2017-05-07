@@ -38,7 +38,7 @@ public class Menu {
             case 1: MainStock.addProductToAppliancesStock();
 
                 break;
-            case 2:Register.addItemsToSale(Register.creatSale());
+            case 2://Register.addItemsToSale(Register.creatSale());
                 break;
             case 0: System.exit(0);
         }

@@ -1,6 +1,6 @@
 package com.stef.Meetings.lesson09;
 
-import com.stef.MagazineProject.Employee;
+import com.stef.MagazineProject.domain.Employee;
 
 import java.util.ArrayList;
 import java.util.Scanner;

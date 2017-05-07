@@ -1,6 +1,5 @@
 package com.stef.Meetings.lesson20_JDBC;
 
-import com.stef.MagazineProject.Product;
 import org.apache.log4j.Logger;
 
 import java.sql.*;

@@ -1,4 +1,4 @@
-package com.stef.MagazineProject;
+package com.stef.MagazineProject.domain;
 
 public class Consultant extends Employee {
 

@@ -1,6 +1,6 @@
 package com.stef.Meetings.lesson22_DAO;
 
-import com.stef.MagazineProject.Product;
+import com.stef.MagazineProject.domain.Product;
 import org.apache.log4j.Logger;
 
 import java.sql.*;

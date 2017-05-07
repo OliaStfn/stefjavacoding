@@ -1,5 +1,6 @@
 package com.stef.MagazineProject;
 
+import com.stef.MagazineProject.domain.Employee;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

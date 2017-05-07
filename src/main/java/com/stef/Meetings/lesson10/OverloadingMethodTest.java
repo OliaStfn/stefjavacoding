@@ -1,7 +1,5 @@
 package com.stef.Meetings.lesson10;
 
-import com.stef.MagazineProject.Human;
-
 public class OverloadingMethodTest {
     public static void main(String[] args) {
        /* Human hm = new Human();

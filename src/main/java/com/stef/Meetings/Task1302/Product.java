@@ -2,7 +2,7 @@ package com.stef.Meetings.Task1302;
 
 import java.io.Serializable;
 
-public class Product implements Serializable{
+public class Product implements Serializable {
     private String description;
     private double price;
     private static int nextID = 1;
@@ -45,8 +45,12 @@ public class Product implements Serializable{
         setItemID();
     }
 
-    public static void setNextID(int id){
+    public static void setNextID(int id) {
         nextID = id;
+    }
+
+    public static Product create() {
+        return new Product();
     }
 
     @Override

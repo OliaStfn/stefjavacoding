@@ -1,11 +1,9 @@
 package com.stef.Meetings.lesson11;
 
-import com.stef.MagazineProject.Employee;
-import com.stef.MagazineProject.Manager;
-import com.stef.MagazineProject.Officer;
+import com.stef.MagazineProject.domain.Employee;
+import com.stef.MagazineProject.domain.Manager;
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 
 public class lesson_11_1 {
     public static void main(String[] args) {

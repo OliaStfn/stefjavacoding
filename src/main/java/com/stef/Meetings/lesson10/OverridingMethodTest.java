@@ -1,7 +1,7 @@
 package com.stef.Meetings.lesson10;
 
-import com.stef.MagazineProject.Employee;
-import com.stef.MagazineProject.Manager;
+import com.stef.MagazineProject.domain.Employee;
+import com.stef.MagazineProject.domain.Manager;
 
 public class OverridingMethodTest {
     public static void main(String[] args) {

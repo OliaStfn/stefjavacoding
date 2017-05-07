@@ -1,6 +1,6 @@
 package com.stef.Meetings.lesson22_DAO;
 
-import com.stef.MagazineProject.Client;
+import com.stef.MagazineProject.domain.Client;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
