@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Stock {
+public class Stock<T extends Product> {
     private static final Logger log = Logger.getLogger(Stock.class);
     private static ArrayList<Product> goods = new ArrayList<Product>();
 
