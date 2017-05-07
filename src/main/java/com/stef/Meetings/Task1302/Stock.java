@@ -8,21 +8,21 @@ import java.util.Scanner;
 
 public class Stock<T extends Product> {
     private static final Logger log = Logger.getLogger(Stock.class);
-    private static ArrayList<Product> goods = new ArrayList<Product>();
+    private ArrayList<T> goods = new ArrayList<T>();
 
-    public static void addProduct(String desc, double price) {
+    public void addProduct(String desc, double price) {
         try {
             if (price <= 0) {
                 throw new Exception();
             }
-            goods.add(new Product(desc, price));
+            goods.add((T) new Product(desc, price));
         } catch (Exception e) {
             System.out.println("Price less than zero");
             log.info("Price less than zero" + e.getMessage());
         }
     }
 
-    public static void addProduct() {
+    public void addProduct() {
         Scanner in = new Scanner(System.in);
         String description = "";
         double price = 0;
@@ -32,7 +32,7 @@ public class Stock<T extends Product> {
             description = in.next();
             System.out.print("Enter price of product: ");
             price = in.nextDouble();
-            goods.add(new Product(description, price));
+            goods.add((T) new Product(description, price));
 
             System.out.println("Add another product?");
             System.out.print("1-YES / 0-NO :");
@@ -45,8 +45,61 @@ public class Stock<T extends Product> {
 
     }
 
-    public static Product findProduct() {
-        for (Product product : goods) {
+    public void addPetSupplies() {
+        Scanner in = new Scanner(System.in);
+        String description = "";
+        double price = 0;
+        String type="";
+        String forAnimal="";
+        int repeat = -1;
+        do {
+            System.out.print("Enter product description: ");
+            description = in.next();
+            System.out.print("Enter price of product: ");
+            price = in.nextDouble();
+            System.out.print("Enter type of product: ");
+            type = in.next();
+            System.out.print("Enter animals for which this product: ");
+            forAnimal = in.next();
+            goods.add((T) new PetSupplies(description, price,type,forAnimal));
+
+            System.out.println("Add another product?");
+            System.out.print("1-YES / 0-NO :");
+            repeat = in.nextInt();
+
+        } while (repeat != 0);
+
+        saveProductToFile();
+    }
+    public void addAppliances() {
+        Scanner in = new Scanner(System.in);
+        String description = "";
+        double price = 0;
+        String category="";
+        String type="";
+        int repeat = -1;
+        do {
+            System.out.print("Enter product description: ");
+            description = in.next();
+            System.out.print("Enter price of product: ");
+            price = in.nextDouble();
+            System.out.print("Enter type of product: ");
+            type = in.next();
+            System.out.print("Enter category of product: ");
+            category = in.next();
+            goods.add((T) new Appliances(description, price,category,type));
+
+            System.out.println("Add another product?");
+            System.out.print("1-YES / 0-NO :");
+            repeat = in.nextInt();
+
+        } while (repeat != 0);
+
+        saveProductToFile();
+    }
+
+    public T findProduct() {
+        for (T product : goods) {
             System.out.println(product.toString());
         }
         System.out.print("Chose your product by ID:");
@@ -61,7 +114,7 @@ public class Stock<T extends Product> {
         return goods.get(inputID);
     }
 
-    public static void saveProductToFile() {
+    public void saveProductToFile() {
         try {
             FileOutputStream file = new FileOutputStream("product_catalog.ser");
             ObjectOutputStream obj = new ObjectOutputStream(file);
@@ -77,12 +130,12 @@ public class Stock<T extends Product> {
 
     }
 
-    public static void loadProductFromFIle() {
+    public void loadProductFromFIle() {
         try {
             FileInputStream file = new FileInputStream("product_catalog.ser");
             ObjectInputStream obj = new ObjectInputStream(file);
 
-            goods = (ArrayList<Product>) obj.readObject();
+            goods = (ArrayList<T>) obj.readObject();
             file.close();
             obj.close();
         } catch (FileNotFoundException e) {
@@ -94,12 +147,12 @@ public class Stock<T extends Product> {
         }
         int oldMaxID = 0;
 
-        for(Product product : goods){
+        for(T product : goods){
             if(product.getItemID()>oldMaxID){
                 oldMaxID=product.getItemID();
             }
         }
-        Product.setNextID(oldMaxID+1);
+        T.setNextID(oldMaxID+1);
 
 
     }
