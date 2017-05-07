@@ -40,7 +40,7 @@ public class Stock<T extends Product> {
 
         } while (repeat != 0);
 
-        saveProductToFile();
+        saveProductToFile("product_catalog");
 
 
     }
@@ -49,8 +49,8 @@ public class Stock<T extends Product> {
         Scanner in = new Scanner(System.in);
         String description = "";
         double price = 0;
-        String type="";
-        String forAnimal="";
+        String type = "";
+        String forAnimal = "";
         int repeat = -1;
         do {
             System.out.print("Enter product description: ");
@@ -61,7 +61,7 @@ public class Stock<T extends Product> {
             type = in.next();
             System.out.print("Enter animals for which this product: ");
             forAnimal = in.next();
-            goods.add((T) new PetSupplies(description, price,type,forAnimal));
+            goods.add((T) new PetSupplies(description, price, type, forAnimal));
 
             System.out.println("Add another product?");
             System.out.print("1-YES / 0-NO :");
@@ -69,14 +69,15 @@ public class Stock<T extends Product> {
 
         } while (repeat != 0);
 
-        saveProductToFile();
+        saveProductToFile("pet_supplies");
     }
+
     public void addAppliances() {
         Scanner in = new Scanner(System.in);
         String description = "";
         double price = 0;
-        String category="";
-        String type="";
+        String category = "";
+        String type = "";
         int repeat = -1;
         do {
             System.out.print("Enter product description: ");
@@ -87,7 +88,7 @@ public class Stock<T extends Product> {
             type = in.next();
             System.out.print("Enter category of product: ");
             category = in.next();
-            goods.add((T) new Appliances(description, price,category,type));
+            goods.add((T) new Appliances(description, price, category, type));
 
             System.out.println("Add another product?");
             System.out.print("1-YES / 0-NO :");
@@ -95,7 +96,7 @@ public class Stock<T extends Product> {
 
         } while (repeat != 0);
 
-        saveProductToFile();
+        saveProductToFile("appliances");
     }
 
     public T findProduct() {
@@ -114,9 +115,9 @@ public class Stock<T extends Product> {
         return goods.get(inputID);
     }
 
-    public void saveProductToFile() {
+    public void saveProductToFile(String nameFile) {
         try {
-            FileOutputStream file = new FileOutputStream("product_catalog.ser");
+            FileOutputStream file = new FileOutputStream(nameFile+".ser");
             ObjectOutputStream obj = new ObjectOutputStream(file);
 
             obj.writeObject(goods);
@@ -130,9 +131,9 @@ public class Stock<T extends Product> {
 
     }
 
-    public void loadProductFromFIle() {
+    public void loadProductFromFIle(String nameFile) {
         try {
-            FileInputStream file = new FileInputStream("product_catalog.ser");
+            FileInputStream file = new FileInputStream(nameFile+".ser");
             ObjectInputStream obj = new ObjectInputStream(file);
 
             goods = (ArrayList<T>) obj.readObject();
@@ -147,12 +148,12 @@ public class Stock<T extends Product> {
         }
         int oldMaxID = 0;
 
-        for(T product : goods){
-            if(product.getItemID()>oldMaxID){
-                oldMaxID=product.getItemID();
+        for (T product : goods) {
+            if (product.getItemID() > oldMaxID) {
+                oldMaxID = product.getItemID();
             }
         }
-        T.setNextID(oldMaxID+1);
+        T.setNextID(oldMaxID + 1);
 
 
     }

@@ -33,9 +33,10 @@ public class Menu {
     }
 
     private static void doIt(int x) {
-        Stock.loadProductFromFIle();
+        MainStock.loadProductFromFIle();
         switch (x) {
-            case 1: Stock.addProduct();
+            case 1: MainStock.addProductToAppliancesStock();
+
                 break;
             case 2:Register.addItemsToSale(Register.creatSale());
                 break;

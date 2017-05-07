@@ -1,6 +1,6 @@
 package com.stef.Meetings.Task1302;
 
-public class Appliances extends Product{
+public class Appliances extends Product {
     private String category;
     private String type;
 
