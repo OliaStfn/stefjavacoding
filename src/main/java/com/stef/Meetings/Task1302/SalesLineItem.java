@@ -3,7 +3,7 @@ package com.stef.Meetings.Task1302;
 
 import java.util.ArrayList;
 
-public class SalesLineItem {
+public class SalesLineItem<T extends Product> {
     private int quantity;
     Product product;
 
@@ -31,11 +31,11 @@ public class SalesLineItem {
         //product = new Product(description, price);
     }
 
-    public static SalesLineItem create(){
+    public static SalesLineItem create() {
         return new SalesLineItem();
     }
 
-    public static ArrayList<SalesLineItem> createSaleLineItem(){
+    public static ArrayList<SalesLineItem> createSaleLineItem() {
         return new ArrayList<SalesLineItem>();
     }
 
