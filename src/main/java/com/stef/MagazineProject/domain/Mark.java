@@ -16,6 +16,8 @@ public class Mark {
         time = new GregorianCalendar();
     }
 
+
+
     public double getMark() {
         return mark;
     }
