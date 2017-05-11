@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 public class Register implements Serializable {
