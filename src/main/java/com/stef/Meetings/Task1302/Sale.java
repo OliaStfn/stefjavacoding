@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 
-
 public class Sale {
     private GregorianCalendar time, date;
     ArrayList<SalesLineItem> lines;
@@ -36,11 +35,15 @@ public class Sale {
     public Sale() {
         time = new GregorianCalendar();
         date = new GregorianCalendar();
-        lines = new ArrayList<SalesLineItem>();
+        lines = SalesLineItem.createSaleLineItem();
     }
 
     public void addLine(int quantity, String description, double price) {
-        lines.add(new SalesLineItem(quantity, description, price));
+        SalesLineItem line = SalesLineItem.create();
+        line.getProduct().setDescription(description);
+        line.getProduct().setPrice(price);
+        line.setQuantity(quantity);
+        lines.add(line);
 
     }
 
@@ -50,6 +53,14 @@ public class Sale {
             temp += lines.get(i).sumLine();
         }
         return temp;
+    }
+
+    public static ArrayList<Sale> createSale(){
+        return new ArrayList<Sale>();
+    }
+
+    public static Sale create(){
+        return new Sale();
     }
 
     @Override

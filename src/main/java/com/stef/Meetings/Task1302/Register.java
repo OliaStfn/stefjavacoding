@@ -8,16 +8,17 @@ import java.util.Scanner;
 
 
 public class Register implements Serializable {
-    private static ArrayList<Sale> sales = new ArrayList<Sale>();
+    private static ArrayList<Sale> sales = Sale.createSale();
     private static final Logger log = Logger.getLogger(Register.class);
 
+ /*
     public static Sale creatSale() {
         Sale temp = new Sale();
         sales.add(temp);
         return temp;
     }
 
-    /*public static void addItemsToSale(Sale sale) {
+    public static void addItemsToSale(Sale sale) {
         Scanner in = new Scanner(System.in);
         int repeat = -1;
         do {

@@ -21,7 +21,7 @@ public class Employee extends Human {
         salary = 2000;
         rating = 0;
         date_of_begin = new GregorianCalendar(2016, 5, 5);
-        marks = new ArrayList<Mark>();
+        marks = Mark.create();
     }
 
     public Employee(String name, String surname, int year, int month, int day, double salary) {
@@ -31,7 +31,7 @@ public class Employee extends Human {
         setId();
         this.salary = salary;
         date_of_begin = new GregorianCalendar();
-        marks = new ArrayList<Mark>();
+        marks = Mark.create();
     }
 
     public void raiseSalary() {
@@ -79,8 +79,10 @@ public class Employee extends Human {
         return date_of_begin;
     }
 
-    public void addMark(double mark) {
-        marks.add(new Mark(mark));
+    public void addMark(double valuation) {
+        Mark mark = Mark.createMark();
+        mark.setMark(valuation);
+        marks.add(mark);
     }
 
     public void generationRating() {

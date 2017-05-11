@@ -1,6 +1,8 @@
 package com.stef.Meetings.Task1302;
 
 
+import java.util.ArrayList;
+
 public class SalesLineItem {
     private int quantity;
     Product product;
@@ -27,6 +29,14 @@ public class SalesLineItem {
         product.setDescription(description);
         product.setPrice(price);
         //product = new Product(description, price);
+    }
+
+    public static SalesLineItem create(){
+        return new SalesLineItem();
+    }
+
+    public static ArrayList<SalesLineItem> createSaleLineItem(){
+        return new ArrayList<SalesLineItem>();
     }
 
     //TODO #25.02 - Перевантаження конструктора + Узагальнення
