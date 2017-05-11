@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class SalesLineItem<T extends Product> {
     private int quantity;
-    Product product;
+    private Product product;
 
     public int getQuantity() {
         return quantity;
@@ -19,13 +19,13 @@ public class SalesLineItem<T extends Product> {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(T product) {
         this.product = product;
     }
 
     public SalesLineItem(int quantity, String description, double price) {
         this.quantity = quantity;
-        product = Product.create();
+        product =  T.create();
         product.setDescription(description);
         product.setPrice(price);
         //product = new Product(description, price);
@@ -41,9 +41,14 @@ public class SalesLineItem<T extends Product> {
 
     //TODO #25.02 - Перевантаження конструктора + Узагальнення
 
+    <T extends Product> SalesLineItem(T arg) {
+        quantity = 1;
+        product = (T) arg;
+    }
+
     public SalesLineItem() {
         quantity = 1;
-        product = Product.create();
+        product =  T.create();
     }
 
     public double sumLine() {
