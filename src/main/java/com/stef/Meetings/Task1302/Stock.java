@@ -41,8 +41,6 @@ public class Stock<T extends Product> {
         } while (repeat != 0);
 
         saveProductToFile("product_catalog");
-
-
     }
 
     public void addPetSupplies() {

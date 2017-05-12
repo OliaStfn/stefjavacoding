@@ -1,8 +1,6 @@
 package com.stef.Meetings.Task1302;
 
-import java.util.ArrayList;
-
 public interface ISerializable<T> {
-    void saveSaleToFile();
-    ArrayList<T> loadSaleFromFIle();
+    void saveSaleToFile(String path, T obj);
+    T loadSaleFromFIle(String path);
 }
