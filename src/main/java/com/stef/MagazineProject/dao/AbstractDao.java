@@ -50,7 +50,15 @@ public abstract class AbstractDao<T, PK extends Integer> implements GenericDao<T
 
     @Override
     public void update(T obj) throws DaoException {
+        String query = getSelectQuery();
+        query += " WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, );
+            statement.executeQuery();
 
+        } catch (Exception e) {
+            throw new DaoException();
+        }
     }
 
     @Override
