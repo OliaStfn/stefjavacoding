@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public abstract class AbstractDao<T, PK extends Integer> implements GenericDao<T, PK> {
     private Connection connection;
@@ -15,6 +16,8 @@ public abstract class AbstractDao<T, PK extends Integer> implements GenericDao<T
     public abstract String getSelectQuery();
 
     public abstract ArrayList<T> parseResultSet(ResultSet resultSet) throws DaoException;
+
+    public abstract int getId(T obj);
 
     @Override
     public T create() throws DaoException {
@@ -53,18 +56,25 @@ public abstract class AbstractDao<T, PK extends Integer> implements GenericDao<T
         String query = getSelectQuery();
         query += " WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, );
+            statement.setInt(1,getId(obj));
             statement.executeQuery();
 
         } catch (Exception e) {
             throw new DaoException();
-
         }
     }
 
     @Override
     public void delete(T obj) throws DaoException {
+        String query = getSelectQuery();
+        query += " WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1,getId(obj));
+            statement.executeQuery();
 
+        } catch (Exception e) {
+            throw new DaoException();
+        }
     }
 
     @Override
