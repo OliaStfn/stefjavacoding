@@ -60,7 +60,18 @@ public abstract class AbstractDao<T, PK extends Integer> implements GenericDao<T
 
     @Override
     public ArrayList<T> readAll() throws DaoException {
-        
-        return null;
+        ArrayList<T> someList;
+        String query = getSelectQuery();
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            ResultSet resultSet = statement.executeQuery();
+            someList = parseResultSet(resultSet);
+
+        } catch (Exception e) {
+            throw new DaoException();
+        }
+        if(someList==null || someList.size()==0){
+            throw new DaoException("Database is empty");
+        }
+        return someList;
     }
 }
