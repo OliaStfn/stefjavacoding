@@ -127,7 +127,7 @@ public class DataBaseWork {
             stm.executeUpdate(sql_query);
             log.info("Product was created successfully");
         } catch (SQLException e) {
-            log.error("Product wasn't create");
+            log.error("Product wasn't createInDB");
             log.error(e.getMessage());
         } finally {
             if (con != null) con.close();

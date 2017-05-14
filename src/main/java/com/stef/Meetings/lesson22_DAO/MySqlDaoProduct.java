@@ -45,7 +45,7 @@ public class MySqlDaoProduct implements ProductDao {
 
             log.info("Product was created successfully");
         } catch (SQLException e) {
-            log.error("Product wasn't create");
+            log.error("Product wasn't createInDB");
             log.error(e.getMessage());
         } finally {
             if (connection != null) connection.close();

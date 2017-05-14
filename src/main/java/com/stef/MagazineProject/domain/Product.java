@@ -1,10 +1,12 @@
 package com.stef.MagazineProject.domain;
 
 
+import com.stef.MagazineProject.dao.Identifacators;
+
 import java.util.GregorianCalendar;
 
-public class Product {
-    private int id;
+public class Product implements Identifacators<Integer> {
+    private Integer id;
     private String name;
     private double price;
     private String vendor;
@@ -14,8 +16,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(int id, String name, double price, String vendor, GregorianCalendar productionDate, GregorianCalendar expDate) {
-        this.id = id;
+    public Product(String name, double price, String vendor, GregorianCalendar productionDate, GregorianCalendar expDate) {
         this.name = name;
         this.price = price;
         this.vendor = vendor;
@@ -31,11 +32,11 @@ public class Product {
         this.name = name;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    protected void setId(int id) {
         this.id = id;
     }
 

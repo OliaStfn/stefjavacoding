@@ -4,29 +4,55 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Objects;
 
-public abstract class AbstractDao<T, PK extends Integer> implements GenericDao<T, PK> {
+public abstract class AbstractDao<T extends Identifacators<PK>, PK extends Integer> implements GenericDao<T, PK> {
     private Connection connection;
 
     public AbstractDao(Connection connection) {
         this.connection = connection;
     }
 
+    public abstract String getCreateQuery();
+
     public abstract String getSelectQuery();
+
+    public abstract String getUpdateQuery();
+
+    public abstract String getDeleteQuery();
 
     public abstract ArrayList<T> parseResultSet(ResultSet resultSet) throws DaoException;
 
-    public abstract int getId(T obj);
+    public abstract void statementUpdate(PreparedStatement statement, T obj) throws DaoException;
+
+    public abstract void statementInsert(PreparedStatement statement, T obj) throws DaoException;
+
 
     @Override
-    public T create() throws DaoException {
-        return null;
-    }
+    public T createInDB(T object) throws DaoException {
+        T tempObj;
+        String query = getCreateQuery();
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statementInsert(statement, object);
+            int changedFields = statement.executeUpdate();
+            if (changedFields != 1)
+                throw new DaoException("During creating,created more than 1 object: " + changedFields);
+        } catch (Exception e) {
+            throw new DaoException();
+        }
+        query = getSelectQuery() + "WHERE id=(SELECT last_insert_id())";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            ResultSet resultSet = statement.executeQuery();
+            ArrayList<T> someList = parseResultSet(resultSet);
+            if (someList == null || someList.size() != 1) {
+                throw new DaoException("Error on search last created object");
+            }
+            tempObj = someList.iterator().next();
 
-    @Override
-    public T create(T object) throws DaoException {
-        return null;
+        } catch (Exception e) {
+            throw new DaoException();
+        }
+
+        return tempObj;
     }
 
     @Override
@@ -42,23 +68,23 @@ public abstract class AbstractDao<T, PK extends Integer> implements GenericDao<T
         } catch (Exception e) {
             throw new DaoException();
         }
-        if(someList==null || someList.size()==0){
-            throw new DaoException("Record with id="+key+" not found in database");
+        if (someList == null || someList.size() == 0) {
+            throw new DaoException("Record with id=" + key + " not found in database");
         }
-        if(someList.size()>1){
-            throw new DaoException("Found more than one record with id="+key);
+        if (someList.size() > 1) {
+            throw new DaoException("Found more than one record with id=" + key);
         }
         return someList.iterator().next();
     }
 
     @Override
     public void update(T obj) throws DaoException {
-        String query = getSelectQuery();
-        query += " WHERE id = ?";
+        String query = getUpdateQuery();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1,getId(obj));
-            statement.executeQuery();
-
+            statementUpdate(statement, obj);
+            int changedFields = statement.executeUpdate();
+            if (changedFields != 1) throw new DaoException("During update more than 1 field");
+            statement.close();
         } catch (Exception e) {
             throw new DaoException();
         }
@@ -66,12 +92,13 @@ public abstract class AbstractDao<T, PK extends Integer> implements GenericDao<T
 
     @Override
     public void delete(T obj) throws DaoException {
-        String query = getSelectQuery();
-        query += " WHERE id = ?";
+        String query = getDeleteQuery();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1,getId(obj));
-            statement.executeQuery();
-
+            statement.setObject(1, obj.getId());
+            statement.executeUpdate();
+            int changedFields = statement.executeUpdate();
+            if (changedFields != 1) throw new DaoException("During query deleted more than 1 field: " + changedFields);
+            statement.close();
         } catch (Exception e) {
             throw new DaoException();
         }
@@ -84,11 +111,10 @@ public abstract class AbstractDao<T, PK extends Integer> implements GenericDao<T
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             ResultSet resultSet = statement.executeQuery();
             someList = parseResultSet(resultSet);
-
         } catch (Exception e) {
             throw new DaoException();
         }
-        if(someList==null || someList.size()==0){
+        if (someList == null || someList.size() == 0) {
             throw new DaoException("Database is empty");
         }
         return someList;

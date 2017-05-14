@@ -45,7 +45,7 @@ public class MySqlDaoClient implements ClientDao {
 
             log.info("Client was created successfully");
         } catch (SQLException e) {
-            log.error("Client wasn't create");
+            log.error("Client wasn't createInDB");
             log.error(e.getMessage());
         } finally {
             if (connection != null) connection.close();
