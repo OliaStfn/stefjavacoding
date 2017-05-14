@@ -58,6 +58,7 @@ public abstract class AbstractDao<T, PK extends Integer> implements GenericDao<T
 
         } catch (Exception e) {
             throw new DaoException();
+
         }
     }
 
