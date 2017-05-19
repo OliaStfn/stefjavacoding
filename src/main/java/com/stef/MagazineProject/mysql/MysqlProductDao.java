@@ -26,18 +26,17 @@ public class MysqlProductDao extends AbstractDao<Product, Integer> {
 
     @Override
     public String getCreateQuery() {
-
-        return null;
+        return "INSERT INTO goods(name,price,vendor,productionDate,expdate) VALUES(?,?,?,?,?);";
     }
 
     @Override
     public String getUpdateQuery() {
-        return null;
+        return "UPDATE goods SET name=?,price=?,vendor=?,productionDate=?,expdate=? WHERE id=?;";
     }
 
     @Override
     public String getDeleteQuery() {
-        return null;
+        return "DELETE FROM goods WHERE id=?";
     }
 
     @Override
