@@ -60,11 +60,12 @@ public class MysqlProductDao extends AbstractDao<Product, Integer> {
     @Override
     public void statementUpdate(PreparedStatement statement, Product obj) throws DaoException {
         try {
-            statement.setString(2,obj.getName());
-            statement.setDouble(3,obj.getPrice());
-            statement.setString(4,obj.getVendor());
-            statement.setDate(5, Date.valueOf("2017-04-28"));
-            statement.setDate(6, Date.valueOf("2017-04-30"));
+            statement.setString(1,obj.getName());
+            statement.setDouble(2,obj.getPrice());
+            statement.setString(3,obj.getVendor());
+            statement.setDate(4, Date.valueOf("2017-04-28"));
+            statement.setDate(5, Date.valueOf("2017-04-30"));
+            statement.setInt(6,obj.getId());
         } catch (SQLException e) {
             throw new DaoException(e);
         }
@@ -72,7 +73,15 @@ public class MysqlProductDao extends AbstractDao<Product, Integer> {
 
     @Override
     public void statementInsert(PreparedStatement statement, Product obj) throws DaoException {
-
+        try {
+            statement.setString(1,obj.getName());
+            statement.setDouble(2,obj.getPrice());
+            statement.setString(3,obj.getVendor());
+            statement.setDate(4, Date.valueOf("2017-04-28"));
+            statement.setDate(5, Date.valueOf("2017-04-30"));
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
     }
 
     @Override
