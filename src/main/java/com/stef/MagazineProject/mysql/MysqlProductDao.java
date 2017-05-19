@@ -26,6 +26,7 @@ public class MysqlProductDao extends AbstractDao<Product, Integer> {
 
     @Override
     public String getCreateQuery() {
+
         return null;
     }
 
