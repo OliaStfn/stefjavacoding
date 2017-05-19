@@ -87,6 +87,7 @@ public class MysqlProductDao extends AbstractDao<Product, Integer> {
     @Override
     public Product create() throws DaoException {
         Product tempProduct = new Product();
+
         return createInDB(tempProduct);
     }
 }
