@@ -60,5 +60,11 @@ public class Product implements Identifacators<Integer> {
         System.out.println("Exp date is :" + expDate.getTime());
     }
 
+    public void setProductionDate(GregorianCalendar productionDate) {
+        this.productionDate = productionDate;
+    }
 
+    public void setExpDate(GregorianCalendar expDate) {
+        this.expDate = expDate;
+    }
 }

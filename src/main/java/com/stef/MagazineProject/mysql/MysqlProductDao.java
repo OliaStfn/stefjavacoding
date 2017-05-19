@@ -6,6 +6,7 @@ import com.stef.MagazineProject.domain.Product;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public class MysqlProductDao extends AbstractDao<Product, Integer> {
@@ -90,26 +91,25 @@ public class MysqlProductDao extends AbstractDao<Product, Integer> {
         Product tempProduct = new Product();
         Scanner in = new Scanner(System.in);
         System.out.println("Enter name of product: ");
-        String name = in.nextLine();
+        tempProduct.setName(in.nextLine());
         System.out.println("Enter price of product: ");
-        Double price = in.nextDouble();
+        tempProduct.setPrice(in.nextDouble());
         System.out.println("Enter vendor of product: ");
-        String vendor = in.nextLine();
+        tempProduct.setVendor(in.nextLine());
         System.out.println("Enter production year of product: ");
         int year = in.nextInt();
         System.out.println("Enter production month of product: ");
         int month = in.nextInt();
         System.out.println("Enter production day of product: ");
         int day = in.nextInt();
-        String prodDate = year + "-" + month + "-" + day;
-        System.out.println("Enter expiration date of product: ");
+        tempProduct.setProductionDate(new GregorianCalendar(year, month, day));
         System.out.println("Enter expiration year of product: ");
         int expyear = in.nextInt();
         System.out.println("Enter expiration month of product: ");
         int expmonth = in.nextInt();
         System.out.println("Enter expiration day of product: ");
         int expday = in.nextInt();
-        String expdate = expyear + "-" + expmonth + "-" + expday;
+        tempProduct.setExpDate(new GregorianCalendar(expyear, expmonth, expday));
         return createInDB(tempProduct);
     }
 }
