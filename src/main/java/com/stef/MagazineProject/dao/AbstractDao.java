@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 public abstract class AbstractDao<T extends Identifacators<PK>, PK extends Integer> implements GenericDao<T, PK> {
     private Connection connection;
@@ -39,7 +40,7 @@ public abstract class AbstractDao<T extends Identifacators<PK>, PK extends Integ
         } catch (Exception e) {
             throw new DaoException();
         }
-        query = getSelectQuery() + "WHERE id=(SELECT last_insert_id())";
+        query = getSelectQuery() + " WHERE id=(SELECT last_insert_id())";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             ResultSet resultSet = statement.executeQuery();
             ArrayList<T> someList = parseResultSet(resultSet);
@@ -118,5 +119,16 @@ public abstract class AbstractDao<T extends Identifacators<PK>, PK extends Integ
             throw new DaoException("Database is empty");
         }
         return someList;
+    }
+
+
+    protected GregorianCalendar convertToGD(java.sql.Date date){
+        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+        gregorianCalendar.setTime(date);
+        return gregorianCalendar;
+    }
+
+    protected  java.sql.Date convertToDate(GregorianCalendar gregorianCalendar){
+        return  new java.sql.Date(gregorianCalendar.getTime().getTime());
     }
 }

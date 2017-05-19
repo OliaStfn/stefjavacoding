@@ -1,4 +1,4 @@
-package com.stef.Meetings.lesson22_DAO;
+/*package com.stef.Meetings.lesson22_DAO;
 
 import com.stef.MagazineProject.domain.Product;
 import org.apache.log4j.Logger;
@@ -169,4 +169,4 @@ public class MySqlDaoProduct implements ProductDao {
         return products;
     }
 
-}
+}*/

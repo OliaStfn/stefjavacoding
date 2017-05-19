@@ -51,6 +51,8 @@ public class MysqlProductDao extends AbstractDao<Product, Integer> {
                 item.setName(resultSet.getString("name"));
                 item.setPrice(resultSet.getDouble("price"));
                 item.setVendor(resultSet.getString("vendor"));
+                item.setProductionDate(convertToGD(resultSet.getDate("productionDate")));
+                item.setProductionDate(convertToGD(resultSet.getDate("expdate")));
                 products.add(item);
             }
         } catch (Exception e) {
@@ -65,8 +67,8 @@ public class MysqlProductDao extends AbstractDao<Product, Integer> {
             statement.setString(1, obj.getName());
             statement.setDouble(2, obj.getPrice());
             statement.setString(3, obj.getVendor());
-            statement.setDate(4, Date.valueOf("2017-04-28"));
-            statement.setDate(5, Date.valueOf("2017-04-30"));
+            statement.setDate(4, convertToDate(obj.getProductionDate()));
+            statement.setDate(5,convertToDate(obj.getExpDate()));
             statement.setInt(6, obj.getId());
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -79,8 +81,8 @@ public class MysqlProductDao extends AbstractDao<Product, Integer> {
             statement.setString(1, obj.getName());
             statement.setDouble(2, obj.getPrice());
             statement.setString(3, obj.getVendor());
-            statement.setDate(4, Date.valueOf("2017-04-28"));
-            statement.setDate(5, Date.valueOf("2017-04-30"));
+            statement.setDate(4, convertToDate(obj.getProductionDate()));
+            statement.setDate(5,convertToDate(obj.getExpDate()));
         } catch (SQLException e) {
             throw new DaoException(e);
         }

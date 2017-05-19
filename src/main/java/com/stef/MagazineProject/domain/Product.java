@@ -67,4 +67,24 @@ public class Product implements Identifacators<Integer> {
     public void setExpDate(GregorianCalendar expDate) {
         this.expDate = expDate;
     }
+
+    public GregorianCalendar getProductionDate() {
+        return productionDate;
+    }
+
+    public GregorianCalendar getExpDate() {
+        return expDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", vendor='" + vendor + '\'' +
+                ", productionDate=" + productionDate +
+                ", expDate=" + expDate +
+                '}';
+    }
 }

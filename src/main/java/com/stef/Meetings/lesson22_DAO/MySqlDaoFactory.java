@@ -1,4 +1,4 @@
-package com.stef.Meetings.lesson22_DAO;
+/*package com.stef.Meetings.lesson22_DAO;
 
 import com.stef.Meetings.lesson20_JDBC.DataBaseWork;
 import org.apache.log4j.Logger;
@@ -41,3 +41,4 @@ public class MySqlDaoFactory implements DaoFactory {
 
     //public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Integer> implements GenericDao<T, PK>
 }
+*/
