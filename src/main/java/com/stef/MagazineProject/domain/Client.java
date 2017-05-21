@@ -1,8 +1,10 @@
 package com.stef.MagazineProject.domain;
 
+import com.stef.MagazineProject.dao.Identifacators;
+
 import java.util.GregorianCalendar;
 
-public class Client extends Human {
+public class Client extends Human implements Identifacators<Integer> {
     private static int nextId = 1;
     private int id;
     private String phoneNumber;
@@ -61,11 +63,12 @@ public class Client extends Human {
         nextId++;
     }
 
-    public void setId(int id) {
+    protected void setId(int id) {
         this.id = id;
     }
 
-    public int getId() {
+
+    public Integer getId() {
         return id;
     }
 
