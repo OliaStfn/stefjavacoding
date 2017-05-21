@@ -79,12 +79,15 @@ public class Product implements Identifacators<Integer> {
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", vendor='" + vendor + '\'' +
-                ", productionDate=" + productionDate +
-                ", expDate=" + expDate +
+                "Name: " + name +
+                ", Price: " + price +
+                ", vendor: " + vendor +
+                ", Production Date: " +  getProductionDate().get(GregorianCalendar.DATE) +
+                "." + getProductionDate().get(GregorianCalendar.MONTH) +
+                "." + getProductionDate().get(GregorianCalendar.YEAR) +
+                ", Expiration Date: " + getExpDate().get(GregorianCalendar.DATE) +
+                "." + getExpDate().get(GregorianCalendar.MONTH) +
+                "." + getExpDate().get(GregorianCalendar.YEAR) +
                 '}';
     }
 }

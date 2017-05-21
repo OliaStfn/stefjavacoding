@@ -115,10 +115,13 @@ public class Employee extends Human {
     @Override
     public String toString() {
         return "Employee{" +
-                "Name=" + getName() +
-                "surname=" + getSurname() +
-                ", salary=" + salary +
-                ", rating=" + rating +
+                "Name: " + getName() +
+                ", Date of begin:"+getDate_of_begin().get(GregorianCalendar.DATE) +
+                "." + getDate_of_begin().get(GregorianCalendar.MONTH) +
+                "." + getDate_of_begin().get(GregorianCalendar.YEAR) +
+                ", Surname: " + getSurname() +
+                ", Salary: " + salary +
+                ", Rating: " + rating +
                 '}';
     }
 
