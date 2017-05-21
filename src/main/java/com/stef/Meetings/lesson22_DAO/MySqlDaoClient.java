@@ -75,7 +75,7 @@ public class MySqlDaoClient implements ClientDao {
                 tempDate = (GregorianCalendar) cal;
                 String PhoneNumber = rs.getString("PhoneNumber");
                 String Address = rs.getString("Address");
-                client = new Client(ID, Name, Surname, tempDate, PhoneNumber, Address);
+                //client = new Client(ID, Name, Surname, tempDate, PhoneNumber, Address);
             }
         } catch (SQLException e) {
             log.error("Error in getting clients from DB");
@@ -151,7 +151,7 @@ public class MySqlDaoClient implements ClientDao {
                 tempDate = (GregorianCalendar) cal;
                 String PhoneNumber = rs.getString("PhoneNumber");
                 String Address = rs.getString("Address");
-                clients.add(new Client(ID, Name, Surname, tempDate, PhoneNumber, Address));
+                //clients.add(new Client(ID, Name, Surname, tempDate, PhoneNumber, Address));
             }
         } catch (SQLException e) {
             log.error("Error in getting clients from DB");

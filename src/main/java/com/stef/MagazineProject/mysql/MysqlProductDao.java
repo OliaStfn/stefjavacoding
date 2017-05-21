@@ -52,7 +52,7 @@ public class MysqlProductDao extends AbstractDao<Product, Integer> {
                 item.setPrice(resultSet.getDouble("price"));
                 item.setVendor(resultSet.getString("vendor"));
                 item.setProductionDate(convertToGD(resultSet.getDate("productionDate")));
-                item.setProductionDate(convertToGD(resultSet.getDate("expdate")));
+                item.setExpDate(convertToGD(resultSet.getDate("expdate")));
                 products.add(item);
             }
         } catch (Exception e) {

@@ -3,6 +3,7 @@ package com.stef.MagazineProject.mysql;
 import com.stef.MagazineProject.dao.DaoException;
 import com.stef.MagazineProject.dao.DaoFactory;
 import com.stef.MagazineProject.dao.GenericDao;
+import com.stef.MagazineProject.domain.Client;
 import com.stef.MagazineProject.domain.Product;
 import org.apache.log4j.Logger;
 
@@ -62,11 +63,11 @@ public class MySQLDaoFactory implements DaoFactory<Connection> {
             }
         });
 
-        /*allDao.put(Client.class, new DaoCreator<Connection>() {
+        allDao.put(Client.class, new DaoCreator<Connection>() {
             @Override
             public GenericDao create(Connection connection) {
-                return new MysqlClienDao(connection);
+                return new MySQLClientDAO(connection);
             }
-        });*/
+        });
     }
 }

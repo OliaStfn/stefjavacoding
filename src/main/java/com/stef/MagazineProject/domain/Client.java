@@ -5,7 +5,6 @@ import com.stef.MagazineProject.dao.Identifacators;
 import java.util.GregorianCalendar;
 
 public class Client extends Human implements Identifacators<Integer> {
-    private static int nextId = 1;
     private int id;
     private String phoneNumber;
     private String address;
@@ -14,7 +13,6 @@ public class Client extends Human implements Identifacators<Integer> {
         setName("name");
         setSurname("surname");
         setBornDate(new GregorianCalendar(1990, 01, 01));
-        setId();
         phoneNumber = "none";
         address = "none";
     }
@@ -25,22 +23,9 @@ public class Client extends Human implements Identifacators<Integer> {
         setName(name);
         setSurname(surname);
         setBornDate(new GregorianCalendar(year, month, day));
-        setId();
         this.phoneNumber = phoneNumber;
         this.address = address;
     }
-
-    public Client(int id, String name, String surname, GregorianCalendar date,
-                  String phoneNumber, String address) {
-        setId(id);
-        setName(name);
-        setSurname(surname);
-        setBornDate(date);
-        setId();
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-    }
-
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -56,11 +41,6 @@ public class Client extends Human implements Identifacators<Integer> {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public void setId() {
-        id = nextId;
-        nextId++;
     }
 
     protected void setId(int id) {
