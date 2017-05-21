@@ -55,9 +55,13 @@ public class Client extends Human implements Identifacators<Integer> {
     @Override
     public String toString() {
         return "Client{" +
-                "id=" + id +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", address='" + address + '\'' +
+                "Name: " + getName() +
+                ", Surname: " + getSurname() +
+                ", Born Date: " + getBornDate().get(GregorianCalendar.DATE) +
+                "." + getBornDate().get(GregorianCalendar.MONTH) +
+                "." + getBornDate().get(GregorianCalendar.YEAR) +
+                ", phoneNumber: " + phoneNumber +
+                ", address: " + address +
                 '}';
     }
 }

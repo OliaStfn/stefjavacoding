@@ -115,9 +115,8 @@ public class Employee extends Human {
     @Override
     public String toString() {
         return "Employee{" +
-                "name=" + getName() +
+                "Name=" + getName() +
                 "surname=" + getSurname() +
-                "id=" + getId() +
                 ", salary=" + salary +
                 ", rating=" + rating +
                 '}';
