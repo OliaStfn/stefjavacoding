@@ -22,15 +22,16 @@ public class MysqlProductDaoTest {
 
     @Test
     public void read() throws Exception {
-        MySQLDaoFactory factory=new MySQLDaoFactory();
-        GenericDao dao=factory.getDao(factory.getConnection(),Product.class);
-        Product findproduct=(Product) dao.read(5);
+        MySQLDaoFactory factory = new MySQLDaoFactory();
+        GenericDao dao = factory.getDao(factory.getConnection(), Product.class);
+        Product findproduct = (Product) dao.read(5);
         assertNotNull(findproduct);
         System.out.println(findproduct.toString());
     }
 
     @Test
     public void update() throws Exception {
+
     }
 
     @Test
