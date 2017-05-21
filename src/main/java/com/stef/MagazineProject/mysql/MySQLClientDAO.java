@@ -3,7 +3,6 @@ package com.stef.MagazineProject.mysql;
 import com.stef.MagazineProject.dao.AbstractDao;
 import com.stef.MagazineProject.dao.DaoException;
 import com.stef.MagazineProject.domain.Client;
-import com.stef.MagazineProject.domain.Product;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
