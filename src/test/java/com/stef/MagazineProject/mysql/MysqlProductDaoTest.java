@@ -4,6 +4,8 @@ import com.stef.MagazineProject.dao.GenericDao;
 import com.stef.MagazineProject.domain.Product;
 import org.junit.Test;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -31,15 +33,26 @@ public class MysqlProductDaoTest {
 
     @Test
     public void update() throws Exception {
-
+        MySQLDaoFactory factory = new MySQLDaoFactory();
+        GenericDao dao = factory.getDao(factory.getConnection(), Product.class);
+        Product product = (Product) dao.read(5);
+        product.setPrice(8);
+        dao.update(product);
     }
 
     @Test
     public void delete() throws Exception {
+        MySQLDaoFactory factory = new MySQLDaoFactory();
+        GenericDao dao = factory.getDao(factory.getConnection(), Product.class);
+        dao.delete(10);
     }
 
     @Test
     public void readAll() throws Exception {
+        MySQLDaoFactory factory = new MySQLDaoFactory();
+        GenericDao dao = factory.getDao(factory.getConnection(), Product.class);
+        ArrayList<Product> products = dao.readAll();
+        assertNotNull(products);
     }
 
 }
