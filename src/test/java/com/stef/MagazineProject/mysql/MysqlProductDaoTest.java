@@ -44,7 +44,8 @@ public class MysqlProductDaoTest {
     public void delete() throws Exception {
         MySQLDaoFactory factory = new MySQLDaoFactory();
         GenericDao dao = factory.getDao(factory.getConnection(), Product.class);
-        dao.delete(10);
+        Product findproduct = (Product) dao.read(13);
+        dao.delete(findproduct);
     }
 
     @Test

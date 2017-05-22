@@ -84,7 +84,7 @@ public class MysqlProductDao extends AbstractDao<Product, Integer> {
             statement.setDate(4, convertToDate(obj.getProductionDate()));
             statement.setDate(5,convertToDate(obj.getExpDate()));
         } catch (SQLException e) {
-            throw new DaoException(e);
+            throw new DaoException("Error in set prepared statement "+e.getMessage());
         }
     }
 

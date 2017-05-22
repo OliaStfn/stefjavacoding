@@ -1,5 +1,6 @@
 package com.stef.MagazineProject.dao;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -57,7 +58,7 @@ public abstract class AbstractDao<T extends Identifacators<PK>, PK extends Integ
     }
 
     @Override
-    public T read(PK key) throws DaoException {
+    public T read(Integer key) throws DaoException {
         ArrayList<T> someList;
         String query = getSelectQuery();
         query += " WHERE id = ?";
@@ -96,7 +97,6 @@ public abstract class AbstractDao<T extends Identifacators<PK>, PK extends Integ
         String query = getDeleteQuery();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setObject(1, obj.getId());
-            statement.executeUpdate();
             int changedFields = statement.executeUpdate();
             if (changedFields != 1) throw new DaoException("During query deleted more than 1 field: " + changedFields);
             statement.close();
