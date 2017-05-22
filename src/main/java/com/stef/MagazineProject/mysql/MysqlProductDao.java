@@ -28,12 +28,12 @@ public class MysqlProductDao extends AbstractDao<Product, Integer> {
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO goods(name,price,vendor,productionDate,expdate) VALUES(?,?,?,?,?);";
+        return "INSERT INTO goods(name,price,vendor,production_date,expiration_date) VALUES(?,?,?,?,?);";
     }
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE goods SET name=?,price=?,vendor=?,productionDate=?,expdate=? WHERE id=?;";
+        return "UPDATE goods SET name=?,price=?,vendor=?,production_date=?,expiration_date=? WHERE id=?;";
     }
 
     @Override
@@ -51,8 +51,8 @@ public class MysqlProductDao extends AbstractDao<Product, Integer> {
                 item.setName(resultSet.getString("name"));
                 item.setPrice(resultSet.getDouble("price"));
                 item.setVendor(resultSet.getString("vendor"));
-                item.setProductionDate(convertToGD(resultSet.getDate("productionDate")));
-                item.setExpDate(convertToGD(resultSet.getDate("expdate")));
+                item.setProductionDate(convertToGD(resultSet.getDate("production_date")));
+                item.setExpDate(convertToGD(resultSet.getDate("expiration_date")));
                 products.add(item);
             }
         } catch (Exception e) {
@@ -114,4 +114,5 @@ public class MysqlProductDao extends AbstractDao<Product, Integer> {
         tempProduct.setExpDate(new GregorianCalendar(expyear, expmonth, expday));
         return createInDB(tempProduct);
     }
+
 }

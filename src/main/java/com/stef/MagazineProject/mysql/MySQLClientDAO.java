@@ -31,12 +31,12 @@ public class MySQLClientDAO extends AbstractDao<Client, Integer> {
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO client(Name,Surname,BornDate,PhoneNumber,Address) VALUES(?,?,?,?,?);";
+        return "INSERT INTO client(name,surname,born_date,phone_number,address) VALUES(?,?,?,?,?);";
     }
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE client SET Name=?,Surname=?,BornDate=?,PhoneNumber=?,Address=? WHERE id=?;";
+        return "UPDATE client SET name=?,surname=?,born_date=?,phone_number=?,address=? WHERE id=?;";
     }
 
     @Override
@@ -53,9 +53,9 @@ public class MySQLClientDAO extends AbstractDao<Client, Integer> {
                 client.setId(resultSet.getInt("id"));
                 client.setName(resultSet.getString("name"));
                 client.setSurname(resultSet.getString("surname"));
-                client.setBornDate(convertToGD(resultSet.getDate("BornDate")));
-                client.setPhoneNumber(resultSet.getString("PhoneNumber"));
-                client.setAddress(resultSet.getString("Address"));
+                client.setBornDate(convertToGD(resultSet.getDate("born_date")));
+                client.setPhoneNumber(resultSet.getString("phone_number"));
+                client.setAddress(resultSet.getString("address"));
                 clients.add(client);
             }
         } catch (Exception e) {
