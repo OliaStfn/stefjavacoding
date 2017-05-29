@@ -49,7 +49,7 @@ public class MySQLClientDAO extends AbstractDao<Client, Integer> {
         ArrayList<Client> clients = new ArrayList<Client>();
         try {
             while (resultSet.next()) {
-                MySQLClientDAO.ClientForDB client = new MySQLClientDAO.ClientForDB();
+                ClientForDB client = new ClientForDB();
                 client.setId(resultSet.getInt("id"));
                 client.setName(resultSet.getString("name"));
                 client.setSurname(resultSet.getString("surname"));

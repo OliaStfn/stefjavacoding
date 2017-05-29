@@ -28,7 +28,7 @@ public class MysqlProductDao extends AbstractDao<Product, Integer> {
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO goods(name,price,vendor,production_date,expiration_date) VALUES(?,?,?,?,?);";
+        return "INSERT INTO goods(goods_name,price,vendor,production_date,expiration_date) VALUES(?,?,?,?,?);";
     }
 
     @Override
@@ -48,7 +48,7 @@ public class MysqlProductDao extends AbstractDao<Product, Integer> {
             while (resultSet.next()) {
                 ProductForDB item = new ProductForDB();
                 item.setId(resultSet.getInt("id"));
-                item.setName(resultSet.getString("name"));
+                item.setName(resultSet.getString("goods_name"));
                 item.setPrice(resultSet.getDouble("price"));
                 item.setVendor(resultSet.getString("vendor"));
                 item.setProductionDate(convertToGD(resultSet.getDate("production_date")));

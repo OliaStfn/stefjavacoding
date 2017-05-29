@@ -14,8 +14,8 @@ import static org.junit.Assert.*;
 public class MySQLClientDAOTest {
     @Test
     public void createInDB() throws DaoException {
-        Client client = new Client("Olga", "Stefanyshyn", 1999, 03, 22,
-                "0932202176", "Vovchynetska 198b/144");
+        Client client = new Client("Nazar", "Mykhailiv", 1990, 30, 7,
+                "0632202176", "Vovchynetska 198b/144");
         MySQLDaoFactory factory = new MySQLDaoFactory();
         GenericDao dao = factory.getDao(factory.getConnection(), Client.class);
         Client fieldclient = (Client) dao.createInDB(client);
@@ -44,7 +44,7 @@ public class MySQLClientDAOTest {
     public void delete() throws DaoException {
         MySQLDaoFactory factory = new MySQLDaoFactory();
         GenericDao dao = factory.getDao(factory.getConnection(), Client.class);
-        //dao.delete(2);
+        //dao.delete(3);
     }
 
     @Test
