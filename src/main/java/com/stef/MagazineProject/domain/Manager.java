@@ -1,7 +1,12 @@
 package com.stef.MagazineProject.domain;
 
+import com.stef.Meetings.lesson_33.LinkedListQueue;
+
+import java.util.LinkedList;
+
 public class Manager extends Employee {
 
+    private LinkedListQueue<Mark> orderList = new LinkedListQueue<>();
     private String phone;
     private String department;
 
