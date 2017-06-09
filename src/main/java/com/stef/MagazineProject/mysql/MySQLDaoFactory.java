@@ -4,6 +4,7 @@ import com.stef.MagazineProject.dao.DaoException;
 import com.stef.MagazineProject.dao.DaoFactory;
 import com.stef.MagazineProject.dao.GenericDao;
 import com.stef.MagazineProject.domain.Client;
+import com.stef.MagazineProject.domain.Employee;
 import com.stef.MagazineProject.domain.Product;
 import org.apache.log4j.Logger;
 
@@ -17,7 +18,7 @@ import java.util.Map;
 public class MySQLDaoFactory implements DaoFactory<Connection> {
     private static final Logger log = Logger.getLogger(MySQLDaoFactory.class);
     private static String driverName = "com.mysql.jdbc.Driver";
-    private static String URL = "jdbc:mysql://servlab.mysql.ukraine.com.ua:3306/servlab_devolga";
+    private static String URL = "jdbc:mysql://servlab.mysql.ukraine.com.ua/servlab_devolga?useSSL=false";
     private static String USERNAME = "servlab_devolga";
     private static String PASSWORD = "942lucxf";
     private Map<Class, DaoCreator> allDao;
@@ -56,10 +57,10 @@ public class MySQLDaoFactory implements DaoFactory<Connection> {
     public MySQLDaoFactory() {
         allDao = new HashMap<Class, DaoCreator>();
 
-        allDao.put(Product.class, new DaoCreator<Connection>() {
+        allDao.put(Product.class, new DaoFactory.DaoCreator<Connection>() {
             @Override
             public GenericDao create(Connection connection) {
-                return new MysqlProductDao(connection);
+                return new MySQLProductDao(connection);
             }
         });
 
@@ -67,6 +68,13 @@ public class MySQLDaoFactory implements DaoFactory<Connection> {
             @Override
             public GenericDao create(Connection connection) {
                 return new MySQLClientDAO(connection);
+            }
+        });
+
+        allDao.put(Employee.class, new DaoFactory.DaoCreator<Connection>() {
+            @Override
+            public GenericDao create(Connection connection) {
+                return new MySQLEmployeeDao(connection);
             }
         });
     }

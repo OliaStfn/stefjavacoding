@@ -7,6 +7,9 @@ public abstract class Human {
     private String name;
     private String surname;
     private GregorianCalendar bornDate;
+    private String password;
+    private String login;
+    private String PhoneNumber;
 
     public void setBornDate(GregorianCalendar bornDate) {
         try {
@@ -14,6 +17,30 @@ public abstract class Human {
         }catch (NullPointerException e){
             System.out.println("Exception: "+e);
         }
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getPhoneNumber() {
+        return PhoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        PhoneNumber = phoneNumber;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getName() {
@@ -50,5 +77,5 @@ public abstract class Human {
         return year;
     }
 
-    //public abstract void showInformation();
+
 }

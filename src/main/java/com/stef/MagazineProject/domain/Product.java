@@ -1,11 +1,12 @@
 package com.stef.MagazineProject.domain;
 
 
-import com.stef.MagazineProject.dao.Identifacators;
+import com.stef.MagazineProject.dao.Identificators;
+import com.stef.MagazineProject.support.ISort;
 
 import java.util.GregorianCalendar;
 
-public class Product implements Identifacators<Integer> {
+public class Product implements Identificators<Integer>,ISort {
     private Integer id;
     private String name;
     private double price;
@@ -32,7 +33,7 @@ public class Product implements Identifacators<Integer> {
         this.name = name;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -57,7 +58,7 @@ public class Product implements Identifacators<Integer> {
     }
 
     public void showExpDate(){
-        System.out.println("Exp date is :" + expDate.getTime());
+        System.out.println("Expiration date is :" + expDate.getTime());
     }
 
     public void setProductionDate(GregorianCalendar productionDate) {
@@ -78,16 +79,25 @@ public class Product implements Identifacators<Integer> {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "Name: " + name +
-                ", Price: " + price +
-                ", vendor: " + vendor +
-                ", Production Date: " +  getProductionDate().get(GregorianCalendar.DATE) +
+        return "Product: " +
+                "\n |\t Name: \t\t\t\t|\t" + name +
+                "\n |\t Price: \t\t\t|\t" + price +
+                "\n |\t vendor: \t\t\t|\t" + vendor +
+                "\n |\t Production Date: \t|\t" +  getProductionDate().get(GregorianCalendar.DATE) +
                 "." + getProductionDate().get(GregorianCalendar.MONTH) +
                 "." + getProductionDate().get(GregorianCalendar.YEAR) +
-                ", Expiration Date: " + getExpDate().get(GregorianCalendar.DATE) +
+                "\n |\t Expiration Date: \t|\t" + getExpDate().get(GregorianCalendar.DATE) +
                 "." + getExpDate().get(GregorianCalendar.MONTH) +
-                "." + getExpDate().get(GregorianCalendar.YEAR) +
-                '}';
+                "." + getExpDate().get(GregorianCalendar.YEAR);
+    }
+
+    @Override
+    public String getWordForSort() {
+        return getName();
+    }
+
+    @Override
+    public double getPriceForSort() {
+        return getPrice();
     }
 }

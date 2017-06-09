@@ -17,23 +17,11 @@ public class Mark {
         time = new GregorianCalendar();
     }
 
-    public static ArrayList<Mark> create(){
-        return new ArrayList<Mark>();
-    }
-
-    public static Mark createMark(){
-        return new Mark();
-    }
-
     public double getMark() {
         return mark;
     }
 
     public GregorianCalendar getTime() {
         return time;
-    }
-
-    public void setMark(double mark) {
-        this.mark = mark;
     }
 }

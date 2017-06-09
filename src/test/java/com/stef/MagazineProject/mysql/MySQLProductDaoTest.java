@@ -11,14 +11,14 @@ import java.util.GregorianCalendar;
 
 import static org.junit.Assert.*;
 
-public class MysqlProductDaoTest {
+public class MySQLProductDaoTest {
     @Test
     public void createInDB() throws Exception {
         Product product = new Product("salat Caesar", 30.0, "pizza+", new GregorianCalendar(),
                 new GregorianCalendar(Calendar.YEAR, Calendar.MONTH, Calendar.DATE + 1));
         MySQLDaoFactory factory = new MySQLDaoFactory();
         GenericDao dao = factory.getDao(factory.getConnection(), Product.class);
-        Product fieldproduct = (Product) dao.createInDB(product);
+        Product fieldproduct = (Product) dao.createInDB(product,1);
         System.out.println(fieldproduct.toString());
     }
 
@@ -37,15 +37,15 @@ public class MysqlProductDaoTest {
         GenericDao dao = factory.getDao(factory.getConnection(), Product.class);
         Product product = (Product) dao.read(5);
         product.setPrice(8);
-        dao.update(product);
+        dao.update(product,1);
     }
 
     @Test
     public void delete() throws Exception {
         MySQLDaoFactory factory = new MySQLDaoFactory();
         GenericDao dao = factory.getDao(factory.getConnection(), Product.class);
-        Product findproduct = (Product) dao.read(13);
-        dao.delete(findproduct);
+        Product findproduct = (Product) dao.read(17);
+        dao.delete(findproduct,1);
     }
 
     @Test
