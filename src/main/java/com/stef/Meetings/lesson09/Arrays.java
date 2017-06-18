@@ -28,7 +28,7 @@ public class Arrays {
         }
 
 
-        System.out.println("Next id number is "+Employee.getNextId());
+        //System.out.println("Next id number is "+Employee.getNextId());
 
     }
 }

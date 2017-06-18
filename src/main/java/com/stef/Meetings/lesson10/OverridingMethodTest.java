@@ -11,7 +11,7 @@ public class OverridingMethodTest {
         System.out.println(em.toString());
         System.out.println(mn.toString());
 
-        em.raiseSalary();
+      //  em.raiseSalary();
         mn.raiseSalary();
 
         System.out.println(em.toString());

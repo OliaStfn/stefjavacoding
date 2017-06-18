@@ -44,12 +44,12 @@ public class Orders {
     }
 
     public void addNewLine(int count,Goods goods){
-        lines.add(new OrderLine(goods,count));
+        //lines.add(new OrderLine(goods,count));
         allPrice=allPrice();
     }
 
     public void addNewLine(String name, double price, String vendor, GregorianCalendar productionDate, GregorianCalendar expDate, int count){
-        lines.add(new OrderLine(name,price,vendor,productionDate,expDate,count));
+       // lines.add(new OrderLine(name,price,vendor,productionDate,expDate,count));
         allPrice=allPrice();
     }
 }

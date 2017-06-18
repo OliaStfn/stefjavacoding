@@ -19,7 +19,7 @@ public class ManagerTest {
 
         for (Employee human : staff) {
             human.setSalary(salary);
-            human.setBonus();
+          //  human.setBonus();
         }
         assertEquals(salary * 1.10, staff.get(0).getSalary(), 0);
         assertEquals(salary * 1.25, staff.get(1).getSalary(), 0);

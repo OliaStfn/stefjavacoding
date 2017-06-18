@@ -21,7 +21,7 @@ public class lesson_11_1 {
 
             if (human instanceof Manager){
                 Manager mn = (Manager)human;
-                human.raiseSalary();
+              //  human.raiseSalary();
                 mn.setPhone("0971073443");
             }
             System.out.println(human.toString());

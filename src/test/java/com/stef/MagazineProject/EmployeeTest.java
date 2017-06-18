@@ -27,7 +27,7 @@ public class EmployeeTest {
         Employee em = new Employee(name, surname, year, month, day, salary);
 
         assertEquals(salary, em.getSalary(), 0);
-        em.raiseSalary();
+       // em.raiseSalary();
         assertEquals(salary += salary * koef, em.getSalary());
     }
 
