@@ -2,10 +2,6 @@ package com.stef.Meetings.lesson_33.Homework36;
 
 import org.junit.Test;
 
-import java.util.LinkedList;
-
-import static org.junit.Assert.*;
-
 public class LinkedListStackTest {
     @Test
     public void pop() throws Exception {
