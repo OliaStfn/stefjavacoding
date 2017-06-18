@@ -28,7 +28,7 @@ public class SalesLineItem<T extends Product> {
         product =  T.create();
         product.setDescription(description);
         product.setPrice(price);
-        //product = new Product(description, price);
+        //product = new Goods(description, price);
     }
 
     public static SalesLineItem create() {

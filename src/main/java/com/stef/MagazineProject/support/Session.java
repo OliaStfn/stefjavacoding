@@ -1,11 +1,11 @@
 package com.stef.MagazineProject.support;
-
-import com.stef.MagazineProject.dao.DaoException;
-import com.stef.MagazineProject.dao.GenericDao;
+import com.stef.MagazineProject.DAO.DaoCreator;
+import com.stef.MagazineProject.DAO.DaoException;
+import com.stef.MagazineProject.DAO.GenericDao;
 import com.stef.MagazineProject.domain.Client;
 import com.stef.MagazineProject.domain.Employee;
 import com.stef.MagazineProject.domain.Human;
-import com.stef.MagazineProject.domain.Product;
+import com.stef.MagazineProject.domain.Goods;
 import com.stef.MagazineProject.mysql.MySQLDaoFactory;
 
 import java.util.ArrayList;
@@ -13,18 +13,16 @@ import java.util.Scanner;
 
 public class Session {
     private static Human human = null;
-    private static Product product=null;
+    private static Goods goods = null;
 
     public static void login() throws DaoException {
         Scanner in = new Scanner(System.in);
         String login;
         String password;
-        MySQLDaoFactory factory = new MySQLDaoFactory();
-        GenericDao dao = factory.getDao(factory.getConnection(), Client.class);
-        ArrayList<Client> clients = dao.readAll();
-        System.out.println("Enter your login: ");
+        ArrayList<Client> clients = DaoCreator.readClientFromDB();
+        System.out.print("Enter your login: ");
         login = in.nextLine();
-        System.out.println("Enter your password: ");
+        System.out.print("Enter your password: ");
         password = in.nextLine();
         for (Client client : clients) {
             if (client.getLogin().equals(login)) {
@@ -34,7 +32,9 @@ public class Session {
                 } else System.out.println("Incorrect password");
             }
         }
-        System.out.println("Account not found");
+        System.out.println("Account not found. Do you want try again? 1-Yes,0-No");
+        int choice = Integer.parseInt(in.next());
+        if (choice == 1) login();
     }
 
     public static void register() throws DaoException {
@@ -47,59 +47,78 @@ public class Session {
         Scanner in = new Scanner(System.in);
         String login;
         String password;
+        int choice;
         MySQLDaoFactory factory = new MySQLDaoFactory();
         GenericDao dao = factory.getDao(factory.getConnection(), Employee.class);
         ArrayList<Employee> employees = dao.readAll();
-        System.out.println("Enter your login: ");
-        login = in.nextLine();
-        System.out.println("Enter your password: ");
-        password = in.nextLine();
-        for (Employee employee : employees) {
-            if (employee.getLogin().equals(login)) {
-                if (employee.getPassword().equals(password)) {
-                    human = employee;
-                    return;
-                } else System.out.println("Incorrect password");
+
+        do {
+            System.out.print("\nEnter your login: ");
+            login = in.nextLine();
+            System.out.print("Enter your password: ");
+            password = in.nextLine();
+            for (Employee employee : employees) {
+                if (employee.getLogin().equals(login)) {
+                    if (employee.getPassword().equals(password)) {
+                        human = employee;
+                        break;
+                    } else System.out.println("Incorrect password");
+                }
             }
-        }
-        System.out.println("Account not found");
+            if(human == null){
+                System.out.print("\nAccount not found. Do you want to try again? 1-Yes,0-No");
+                choice = Integer.parseInt(in.next());
+            }else{
+                choice = 0;
+            }
+
+        }while(choice!=0);
+        System.out.println("Sing in successful");
     }
 
     public static void choice() throws DaoException {
         Scanner in = new Scanner(System.in);
         int choice = -1;
+        String tabulation = "\n________________________________________________";
         do {
-            System.out.println("What do you want? Enter your choice: ");
-            System.out.println("1-Register user`s account\n 2-Login as administrator\n " +
-                    "3-Login as user\n 0-Exit");
+            System.out.println("\nWhat do you want?"+tabulation);
+            System.out.println("1-Register user`s account");
+            System.out.println("2-Login as administrator");
+            System.out.println("3-Login as user");
+            System.out.println("0-Exit"+tabulation);
+            System.out.print("\nEnter your choice: ");
             choice = Integer.parseInt(in.next());
-            if (choice == 1) {
-                register();
-                break;
-            } else if (choice == 2) {
-                loginAdmin();
-                break;
-            } else if (choice == 3) {
-                login();
-                break;
+            switch (choice) {
+                case 1:
+                    register();
+                    break;
+                case 2:
+                    loginAdmin();
+                    break;
+                case 3:
+                    login();
+                    break;
+                case 0:System.exit(0);
+                    break;
+                default: break;
             }
-        } while (choice != 0);
+        } while (human == null);
     }
 
     public static void logOut() throws DaoException {
         human = null;
+        Menu.menu();
     }
 
     public static Human getHuman() {
         return human;
     }
 
-    public static Product getProduct() {
-        return product;
+    public static Goods getGoods() {
+        return goods;
     }
 
-    public static void setProduct(Product product) {
-        Session.product = product;
+    public static void setGoods(Goods goods) {
+        Session.goods = goods;
     }
 }
-

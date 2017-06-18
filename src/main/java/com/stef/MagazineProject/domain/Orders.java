@@ -43,8 +43,8 @@ public class Orders {
         return temp;
     }
 
-    public void addNewLine(int count,Product product){
-        lines.add(new OrderLine(product,count));
+    public void addNewLine(int count,Goods goods){
+        lines.add(new OrderLine(goods,count));
         allPrice=allPrice();
     }
 

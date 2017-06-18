@@ -1,4 +1,4 @@
-package com.stef.MagazineProject.dao;
+package com.stef.MagazineProject.DAO;
 
 public class DaoException extends Exception {
     public DaoException() {

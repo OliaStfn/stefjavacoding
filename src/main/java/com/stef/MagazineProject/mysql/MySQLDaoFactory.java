@@ -1,11 +1,9 @@
 package com.stef.MagazineProject.mysql;
-
-import com.stef.MagazineProject.dao.DaoException;
-import com.stef.MagazineProject.dao.DaoFactory;
-import com.stef.MagazineProject.dao.GenericDao;
-import com.stef.MagazineProject.domain.Client;
-import com.stef.MagazineProject.domain.Employee;
-import com.stef.MagazineProject.domain.Product;
+import com.stef.MagazineProject.DAO.DaoException;
+import com.stef.MagazineProject.DAO.DaoFactory;
+import com.stef.MagazineProject.DAO.GenericDao;
+import com.stef.MagazineProject.domain.*;
+import com.stef.MagazineProject.support.OrderStTableMarker;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -57,24 +55,58 @@ public class MySQLDaoFactory implements DaoFactory<Connection> {
     public MySQLDaoFactory() {
         allDao = new HashMap<Class, DaoCreator>();
 
-        allDao.put(Product.class, new DaoFactory.DaoCreator<Connection>() {
+        allDao.put(Goods.class, new DaoFactory.DaoCreator<Connection>() {
             @Override
             public GenericDao create(Connection connection) {
-                return new MySQLProductDao(connection);
+                return new MySQLGoodsDao(connection);
             }
         });
-
         allDao.put(Client.class, new DaoCreator<Connection>() {
             @Override
             public GenericDao create(Connection connection) {
                 return new MySQLClientDAO(connection);
             }
         });
-
         allDao.put(Employee.class, new DaoFactory.DaoCreator<Connection>() {
             @Override
             public GenericDao create(Connection connection) {
                 return new MySQLEmployeeDao(connection);
+            }
+        });
+        allDao.put(Order.class, new DaoFactory.DaoCreator<Connection>() {
+            @Override
+            public GenericDao create(Connection connection) {
+                return new MySQLOrderDao(connection);
+            }
+        });
+        allDao.put(FavouriteList.class, new DaoFactory.DaoCreator<Connection>() {
+            @Override
+            public GenericDao create(Connection connection) {
+                return new MySQLFavouriteListDao(connection);
+            }
+        });
+        allDao.put(FavouriteListLine.class, new DaoFactory.DaoCreator<Connection>() {
+            @Override
+            public GenericDao create(Connection connection) {
+                return new MySQLFavouriteListLineDao(connection);
+            }
+        });
+        allDao.put(Status.class, new DaoFactory.DaoCreator<Connection>() {
+            @Override
+            public GenericDao create(Connection connection) {
+                return new MySQLStatusDao(connection);
+            }
+        });
+        allDao.put(OrderLine.class, new DaoFactory.DaoCreator<Connection>() {
+            @Override
+            public GenericDao create(Connection connection) {
+                return new MySQLOrderLineDao(connection);
+            }
+        });
+        allDao.put(OrderStTableMarker.class, new DaoFactory.DaoCreator<Connection>() {
+            @Override
+            public GenericDao create(Connection connection) {
+                return new MySQLOrderStatusDao(connection);
             }
         });
     }

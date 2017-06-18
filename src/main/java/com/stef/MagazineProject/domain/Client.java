@@ -1,9 +1,14 @@
 package com.stef.MagazineProject.domain;
 
-import com.stef.MagazineProject.dao.Identificators;
+import com.stef.MagazineProject.DAO.DaoCreator;
+import com.stef.MagazineProject.DAO.DaoException;
+import com.stef.MagazineProject.DAO.GenericDao;
+import com.stef.MagazineProject.DAO.Identificators;
 import com.stef.MagazineProject.support.ISort;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.Scanner;
 
 public class Client extends Human implements Identificators<Integer>, ISort {
     private FavouriteList list;
@@ -12,10 +17,10 @@ public class Client extends Human implements Identificators<Integer>, ISort {
     private String address;
     private String login;
     private String password;
-
+    private ArrayList<Order> orders;
 
     public Client() {
-        list = new FavouriteList();
+        list = null;
         setName("name");
         setSurname("surname");
         setBornDate(new GregorianCalendar(1990, 01, 01));
@@ -26,7 +31,7 @@ public class Client extends Human implements Identificators<Integer>, ISort {
     public Client(String name, String surname,
                   int year, int month, int day,
                   String phoneNumber, String address) {
-        list = new FavouriteList();
+        list = null;
         setName(name);
         setSurname(surname);
         setBornDate(new GregorianCalendar(year, month, day));
@@ -74,12 +79,55 @@ public class Client extends Human implements Identificators<Integer>, ISort {
         this.id = id;
     }
 
-    public void addProductToFavouriteList() {
+    public void addProductToFavouriteList() throws DaoException {
+        GenericDao dao = DaoCreator.createMySqlDao("favorite");
+        list = (FavouriteList) dao.read(id);
+        if (list == null) {
+            list = (FavouriteList) dao.createInDB(new FavouriteList(id));
+        }
         list.addProduct();
     }
 
-    public void deleteProductFromFavouriteList() {
-        list.deleteProduct();
+    public void setOrders(ArrayList<Order> orders) {
+        this.orders = orders;
+    }
+
+    public void addOrder() throws DaoException {
+        GenericDao dao = DaoCreator.createMySqlDao("order");
+        orders.add((Order) dao.createInDB(new Order(id))); //створює нове замовлення у базі даних і додає його до всіх замовлень
+    }
+
+    public void addGoodsToOrder() {
+        Goods goods = Stock.findProduct();
+        Scanner in = new Scanner(System.in);
+        int quantity;
+        System.out.println("How much product you want to buy?");
+        quantity = Integer.parseInt(in.next());
+        orders.get(orders.size() - 1).addNewLine(quantity, goods);
+    }
+
+    public void deleteOrder() throws DaoException {
+        GenericDao dao = DaoCreator.createMySqlDao("order");
+        Scanner in = new Scanner(System.in);
+        int temp;
+        orders = dao.readAll();
+        for (Order order : orders) {
+            System.out.println(order.toString());
+        }
+        System.out.println("Enter order id which you want to delete");
+        temp = Integer.parseInt(in.next());
+        for (Order order : orders) {
+            if (order.getId() == temp) {
+                dao.delete(order);
+                orders.remove(order);
+            }
+        }
+    }
+
+    public void showInformation() throws DaoException {
+        GenericDao dao = DaoCreator.createMySqlDao("favorite");
+        list= (FavouriteList) dao.read(id);
+        System.out.println(list.toString());
     }
 
     @Override

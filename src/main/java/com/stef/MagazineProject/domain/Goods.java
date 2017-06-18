@@ -1,12 +1,12 @@
 package com.stef.MagazineProject.domain;
 
 
-import com.stef.MagazineProject.dao.Identificators;
+import com.stef.MagazineProject.DAO.Identificators;
 import com.stef.MagazineProject.support.ISort;
 
 import java.util.GregorianCalendar;
 
-public class Product implements Identificators<Integer>,ISort {
+public class Goods implements Identificators<Integer>,ISort {
     private Integer id;
     private String name;
     private double price;
@@ -14,10 +14,10 @@ public class Product implements Identificators<Integer>,ISort {
     private GregorianCalendar productionDate;
     private GregorianCalendar expDate;
 
-    public Product() {
+    public Goods() {
     }
 
-    public Product(String name, double price, String vendor, GregorianCalendar productionDate, GregorianCalendar expDate) {
+    public Goods(String name, double price, String vendor, GregorianCalendar productionDate, GregorianCalendar expDate) {
         this.name = name;
         this.price = price;
         this.vendor = vendor;
@@ -79,7 +79,7 @@ public class Product implements Identificators<Integer>,ISort {
 
     @Override
     public String toString() {
-        return "Product: " +
+        return "Goods: " +
                 "\n |\t Name: \t\t\t\t|\t" + name +
                 "\n |\t Price: \t\t\t|\t" + price +
                 "\n |\t vendor: \t\t\t|\t" + vendor +

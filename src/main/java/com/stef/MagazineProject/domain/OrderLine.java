@@ -1,31 +1,71 @@
 package com.stef.MagazineProject.domain;
 
+import com.stef.MagazineProject.DAO.Identificators;
 
-import java.util.GregorianCalendar;
-
-public class OrderLine {
-    private Product product;
+public class OrderLine implements Identificators<Integer> {
+    private int orderId;
+    private Goods goods;
     private int count;
+    private double price;
 
-    public OrderLine(String name, double price, String vendor, GregorianCalendar productionDate, GregorianCalendar expDate, int count) {
-        product = new Product(name, price, vendor, productionDate, expDate);
-        this.count = count;
+    public OrderLine() {
+
     }
 
-    public OrderLine(Product product, int count) {
-        this.product = product;
+    public OrderLine(Goods goods, int count,int orderId) {
+        this.goods = goods;
+        this.count = count;
+        this.orderId=orderId;
+        price=setPrice();
+    }
+
+    public double setPrice() {
+        return count * goods.getPrice();
+    }
+
+    public Goods getGoods() {
+        return goods;
+    }
+
+    public void setGoods(Goods goods) {
+        this.goods = goods;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
         this.count = count;
     }
 
     public double getPrice() {
-        return count * product.getPrice();
+        return price;
     }
 
-    public Product getProduct() {
-        return product;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    @Override
+    public int getId() {
+        return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderLine: " +
+                "\n |\tOrderId:  \t\t\t|\t" + orderId +
+                "\n |\tGoods:  \t\t\t|\t" + goods.toString() +
+                "\n |\tCount:  \t\t\t|\t" + count +
+                "\n |\tPrice:  \t\t\t|\t" + price;
     }
 }

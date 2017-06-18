@@ -1,4 +1,4 @@
-package com.stef.MagazineProject.dao;
+package com.stef.MagazineProject.DAO;
 
 import java.io.Serializable;
 

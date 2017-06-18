@@ -1,4 +1,7 @@
-package com.stef.MagazineProject.dao;
+package com.stef.MagazineProject.DAO;
+
+
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +11,7 @@ import java.util.GregorianCalendar;
 
 public abstract class AbstractDao<T extends Identificators<PK>, PK extends Integer> implements GenericDao<T, PK> {
     private Connection connection;
+    private static final Logger log = Logger.getLogger(AbstractDao.class);
 
     public AbstractDao(Connection connection) {
         this.connection = connection;
@@ -17,8 +21,6 @@ public abstract class AbstractDao<T extends Identificators<PK>, PK extends Integ
 
     public abstract String getSelectQuery();
 
-    public abstract String getSelectQuery(String str);
-
     public abstract String getSelectAllQuery();
 
     public abstract String getUpdateQuery();
@@ -27,56 +29,55 @@ public abstract class AbstractDao<T extends Identificators<PK>, PK extends Integ
 
     public abstract ArrayList<T> parseResultSet(ResultSet resultSet) throws DaoException;
 
-    public abstract void statementUpdate(PreparedStatement statement, T obj, int key) throws DaoException;
+    public abstract void statementUpdate(PreparedStatement statement, T obj) throws DaoException;
 
-    public abstract void statementInsert(PreparedStatement statement, T obj, int key) throws DaoException;
+    public abstract void statementInsert(PreparedStatement statement, T obj) throws DaoException;
 
-    public abstract void statementDelete(PreparedStatement statement, T obj, int key) throws DaoException;
-
-    public abstract void statementSelect(PreparedStatement statement, int key) throws DaoException;
 
     @Override
-    public T createInDB(T object, int key) throws DaoException {
+    public T createInDB(T object) throws DaoException {
         T tempObj;
         String query = getCreateQuery();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statementInsert(statement, object,key);
+            statementInsert(statement, object);
             int changedFields = statement.executeUpdate();
             if (changedFields != 1)
                 throw new DaoException("During creating,created more than 1 object: " + changedFields);
         } catch (Exception e) {
+            log.error(e);
             throw new DaoException();
         }
-        query = getSelectQuery("(SELECT last_insert_id());");
+        query = getSelectQuery()+"(SELECT last_insert_id());";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             ResultSet resultSet = statement.executeQuery();
             ArrayList<T> someList = parseResultSet(resultSet);
             if (someList == null || someList.size() != 1) {
                 throw new DaoException("Error on search last created object");
             }
-            tempObj = someList.iterator().next();
+            tempObj = someList.iterator().next();  //перший об'єкт з ліста
 
         } catch (Exception e) {
+            log.error(e);
             throw new DaoException();
         }
-
         return tempObj;
     }
 
     @Override
     public T read(PK key) throws DaoException {
         ArrayList<T> someList;
-        String query = getSelectQuery();
+        String query = getSelectQuery()+key+";";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statementSelect(statement,key);
             ResultSet resultSet = statement.executeQuery();
             someList = parseResultSet(resultSet);
 
         } catch (Exception e) {
+            log.error(e+"Error with read database");
             throw new DaoException();
         }
         if (someList == null || someList.size() == 0) {
-            throw new DaoException("Record with id=" + key + " not found in database");
+            log.error("Record with id=" + key + " not found in database");
+            return null;
         }
         if (someList.size() > 1) {
             throw new DaoException("Found more than one record with id=" + key);
@@ -85,26 +86,28 @@ public abstract class AbstractDao<T extends Identificators<PK>, PK extends Integ
     }
 
     @Override
-    public void update(T obj, int key) throws DaoException {
+    public void update(T obj) throws DaoException {
         String query = getUpdateQuery();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statementUpdate(statement, obj,key);
+            statementUpdate(statement, obj);
             int changedFields = statement.executeUpdate();
             if (changedFields != 1) throw new DaoException("During update more than 1 field");
             statement.close();
         } catch (Exception e) {
+            log.error(e);
             throw new DaoException();
         }
     }
 
     @Override
-    public void delete(T obj, int key) throws DaoException {
+    public void delete(T obj) throws DaoException {
         String query = getDeleteQuery();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statementDelete(statement,obj,key);
+            statement.setObject(1,obj.getId());
             int changedFields = statement.executeUpdate();
             if (changedFields != 1) throw new DaoException("During query deleted more than 1 field: " + changedFields);
         } catch (Exception e) {
+            log.error(e);
             throw new DaoException();
         }
     }
@@ -117,10 +120,8 @@ public abstract class AbstractDao<T extends Identificators<PK>, PK extends Integ
             ResultSet resultSet = statement.executeQuery();
             someList = parseResultSet(resultSet);
         } catch (Exception e) {
+            log.error(e+"Error with read databases");
             throw new DaoException();
-        }
-        if (someList == null || someList.size() == 0) {
-            throw new DaoException("Database is empty");
         }
         return someList;
     }

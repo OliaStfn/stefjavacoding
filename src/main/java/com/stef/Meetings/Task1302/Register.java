@@ -22,7 +22,7 @@ public class Register implements Serializable {
         int repeat = -1;
         do {
             try {
-                //Product pr1 = Stock.findProduct();
+                //Goods pr1 = Stock.findProduct();
                 System.out.print("Enter quantity  of product: ");
                 int quantity = in.nextInt();
                 if (quantity <= 0) {

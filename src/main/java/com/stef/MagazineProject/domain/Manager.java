@@ -38,12 +38,12 @@ public class Manager extends Employee {
         this.department = department;
     }
 
-    @Override
+
     public void raiseSalary() {
         setSalary(getSalary() + getSalary() * 0.15);
     }
 
-    @Override
+
     public void setBonus() {
         setSalary(getSalary() + getSalary() * 0.25);
     }

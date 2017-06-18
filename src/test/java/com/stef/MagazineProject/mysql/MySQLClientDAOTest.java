@@ -1,13 +1,11 @@
 package com.stef.MagazineProject.mysql;
 
-import com.stef.MagazineProject.dao.DaoException;
-import com.stef.MagazineProject.dao.GenericDao;
+import com.stef.MagazineProject.DAO.DaoException;
+import com.stef.MagazineProject.DAO.GenericDao;
 import com.stef.MagazineProject.domain.Client;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import static org.junit.Assert.*;
 

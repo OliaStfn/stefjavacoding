@@ -5,7 +5,7 @@ public class Main {
 
         int x = 10;
 
-        //Human obj = new Product();
+        //Human obj = new Goods();
        /* Human obj = new Human();
         Human ob1;
         Human ob2;

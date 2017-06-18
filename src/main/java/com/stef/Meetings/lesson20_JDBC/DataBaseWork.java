@@ -48,9 +48,9 @@ public class DataBaseWork {
             con = getConnection();
             stm = con.createStatement();
             stm.executeUpdate(sql_query);
-            log.info("Product was updated successfully");
+            log.info("Goods was updated successfully");
         } catch (SQLException e) {
-            log.error("Product wasn't updated");
+            log.error("Goods wasn't updated");
             log.error(e.getMessage());
         } finally {
             if (con != null) con.close();
@@ -102,9 +102,9 @@ public class DataBaseWork {
             con = getConnection();
             stm = con.createStatement();
             stm.executeUpdate(sql_query);
-            log.info("Product was deleted successfully");
+            log.info("Goods was deleted successfully");
         } catch (SQLException e) {
-            log.error("Product wasn't delete");
+            log.error("Goods wasn't delete");
             log.error(e.getMessage());
         } finally {
             if (con != null) con.close();
@@ -125,9 +125,9 @@ public class DataBaseWork {
             con = getConnection();
             stm = con.createStatement();
             stm.executeUpdate(sql_query);
-            log.info("Product was created successfully");
+            log.info("Goods was created successfully");
         } catch (SQLException e) {
-            log.error("Product wasn't createInDB");
+            log.error("Goods wasn't createInDB");
             log.error(e.getMessage());
         } finally {
             if (con != null) con.close();
@@ -159,9 +159,9 @@ public class DataBaseWork {
 
             stm.executeBatch();
             stm.clearBatch();
-            log.info("Product was added successfully");
+            log.info("Goods was added successfully");
         } catch (SQLException e) {
-            log.error("Product wasn't added");
+            log.error("Goods wasn't added");
             log.error(e.getMessage());
         } finally {
             if (con != null) con.close();
@@ -185,9 +185,9 @@ public class DataBaseWork {
             prst.setDate(6,java.sql.Date.valueOf("2017-04-30"));
             prst.execute();
 
-            log.info("Product was added successfully");
+            log.info("Goods was added successfully");
         } catch (SQLException e) {
-            log.error("Product wasn't added");
+            log.error("Goods wasn't added");
             log.error(e.getMessage());
         } finally {
             if (con != null) con.close();

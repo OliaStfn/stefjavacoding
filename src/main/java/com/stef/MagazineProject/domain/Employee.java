@@ -1,12 +1,11 @@
 package com.stef.MagazineProject.domain;
 
-import com.stef.MagazineProject.dao.Identificators;
+import com.stef.MagazineProject.DAO.Identificators;
+import com.stef.MagazineProject.DAO.Identificators;
 import com.stef.MagazineProject.support.ISort;
 
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
-
 
 public class Employee extends Human implements Identificators<Integer>,ISort {
     private int id;
@@ -107,7 +106,6 @@ public class Employee extends Human implements Identificators<Integer>,ISort {
         }
     }
 
-
     public int getId() {
         return id;
     }
@@ -131,10 +129,6 @@ public class Employee extends Human implements Identificators<Integer>,ISort {
                 "\n |\t Salary: \t\t\t|\t" + salary +
                 "\n |\t Phone number: \t\t|\t" + getPhoneNumber() +
                 "\n |\t Rating: \t\t\t|\t" + rating;
-    }
-
-    public void setBonus() {
-        salary += salary * 0.1;
     }
 
     @Override

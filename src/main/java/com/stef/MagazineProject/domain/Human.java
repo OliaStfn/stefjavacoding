@@ -76,6 +76,4 @@ public abstract class Human {
         }
         return year;
     }
-
-
 }
