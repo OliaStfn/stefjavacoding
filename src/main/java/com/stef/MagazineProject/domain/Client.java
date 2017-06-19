@@ -154,4 +154,30 @@ public class Client extends Human implements Identificators<Integer>, ISort {
     public String getWordForSort() {
         return getSurname() + getName();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Client client = (Client) o;
+
+        if (id != client.id) return false;
+        if (list != null ? !list.equals(client.list) : client.list != null) return false;
+        if (phoneNumber != null ? !phoneNumber.equals(client.phoneNumber) : client.phoneNumber != null) return false;
+        if (address != null ? !address.equals(client.address) : client.address != null) return false;
+        if (login != null ? !login.equals(client.login) : client.login != null) return false;
+        return password != null ? password.equals(client.password) : client.password == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = list != null ? list.hashCode() : 0;
+        result = 31 * result + id;
+        result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (login != null ? login.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        return result;
+    }
 }

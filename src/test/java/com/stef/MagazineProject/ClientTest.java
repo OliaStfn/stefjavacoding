@@ -15,6 +15,7 @@ public class ClientTest {
         String address = "Bohorodchany";
 
         Client cl = new Client(name, surname, year, month, day, phoneNumber, address);
+        cl.hashCode();
         //Client cl = new Client();
 
         assertEquals(name, cl.getName());

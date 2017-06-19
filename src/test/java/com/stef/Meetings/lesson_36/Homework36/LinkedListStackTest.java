@@ -1,5 +1,6 @@
-package com.stef.Meetings.lesson_33.Homework36;
+package com.stef.Meetings.lesson_36.Homework36;
 
+import com.stef.Meetings.lesson_36_1.LinkedListStack;
 import org.junit.Test;
 
 public class LinkedListStackTest {
