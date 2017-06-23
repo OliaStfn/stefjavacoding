@@ -1,4 +1,4 @@
-package com.stef.Meetings.Task1302;
+package com.stef.Meetings.lesson13_GRASP;
 
 
 import java.util.ArrayList;

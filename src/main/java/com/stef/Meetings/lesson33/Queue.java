@@ -1,6 +1,4 @@
-package com.stef.Meetings.lesson_33;
-
-import java.util.Collection;
+package com.stef.Meetings.lesson33;
 
 public interface Queue<T> {
     void add(T item);

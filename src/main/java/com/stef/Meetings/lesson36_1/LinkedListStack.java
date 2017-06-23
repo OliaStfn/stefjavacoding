@@ -1,4 +1,4 @@
-package com.stef.Meetings.lesson_36_1;
+package com.stef.Meetings.lesson36_1;
 
 import java.util.AbstractSequentialList;
 import java.util.ListIterator;

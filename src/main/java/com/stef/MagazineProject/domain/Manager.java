@@ -1,8 +1,6 @@
 package com.stef.MagazineProject.domain;
 
-import com.stef.Meetings.lesson_33.LinkedListQueue;
-
-import java.util.LinkedList;
+import com.stef.Meetings.lesson33.LinkedListQueue;
 
 public class Manager extends Employee {
 

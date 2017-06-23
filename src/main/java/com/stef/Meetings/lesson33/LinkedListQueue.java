@@ -1,4 +1,4 @@
-package com.stef.Meetings.lesson_33;
+package com.stef.Meetings.lesson33;
 
 public class LinkedListQueue<T> implements Queue<T> {
 

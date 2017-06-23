@@ -1,9 +1,7 @@
-package com.stef.Meetings.lesson_33;
+package com.stef.Meetings.lesson33;
 
 import com.stef.MagazineProject.domain.Client;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class LinkedListQueueTest {
     @Test
