@@ -1,14 +1,11 @@
 package com.stef.Meetings.lesson_38;
 
 import java.io.*;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class VocabluaryHashSet {
     public static void main(String[] args) throws FileNotFoundException {
-        Set<String> words = new HashSet<String>();
+        Set<String> words = new TreeSet<String>();
         long totalTime = 0;
 
         String inputData = loadBook("./src/main/java/com/stef/Meetings/lesson_38/book.txt");
