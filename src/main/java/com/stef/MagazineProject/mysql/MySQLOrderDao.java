@@ -28,24 +28,26 @@ public class MySQLOrderDao extends AbstractDao<Order, Integer> {
 
     @Override
     public String getSelectQuery() {
-        return "SELECT o.*,s.status,os.order_status_date " +
+        /*return "SELECT o.*,s.status,os.order_status_date " +
                 "FROM orders o NATURAL JOIN status s " +
                 "NATURAL JOIN order_status os " +
                 "WHERE os.order_id=o.order_id " +
                 "AND os.status_id=s.status_id " +
                 "AND os.order_status_date=(SELECT MAX(os.order_status_date)) " +
-                "AND o.order_id=";
+                "AND o.order_id=";*/
+        return "SELECT * FROM orders WHERE order_id=";
     }
 
     @Override
     public String getSelectAllQuery() {
-        return "SELECT o.*,s.status,os.order_status_date " +
+        /*return "SELECT o.*,s.status,os.order_status_date " +
                 "FROM orders o NATURAL JOIN status s " +
                 "NATURAL JOIN order_status os " +
                 "NATURAL JOIN goods g " +
                 "NATURAL JOIN orders_goods og " +
                 "WHERE os.order_id=o.order_id " +
-                "AND os.status_id=s.status_id;";
+                "AND os.status_id=s.status_id;";*/
+        return "SELECT * FROM orders;";
     }
 
     @Override
@@ -71,9 +73,10 @@ public class MySQLOrderDao extends AbstractDao<Order, Integer> {
             while (resultSet.next()) {
                 Order order = new Order();
                 order.setId(resultSet.getInt("orders.order_id"));
-                order.setClientId(resultSet.getInt("orders.client_name"));
-                order.setChangeStatusDate(convertToGD(resultSet.getDate("order_status.order_status_date")));
-                order.setStatus(resultSet.getString("status.status"));
+                order.setClientId(resultSet.getInt("orders.client_id"));
+                //order.setChangeStatusDate(convertToGD(resultSet.getDate("order_status.order_status_date")));
+               // order.setStatus(resultSet.getString("status.status"));
+                orders.add(order);
             }
         } catch (Exception e) {
             throw new DaoException(e+"error with pars result set");
