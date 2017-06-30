@@ -3,7 +3,7 @@ package com.stef.Meetings.lesson_38;
 import java.io.*;
 import java.util.*;
 
-public class VocabluaryHashSet {
+public class VocabularyHashSet {
     public static void main(String[] args) throws FileNotFoundException {
         Set<String> words = new TreeSet<String>();
         long totalTime = 0;
