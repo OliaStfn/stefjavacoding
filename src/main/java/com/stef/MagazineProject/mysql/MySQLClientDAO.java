@@ -30,7 +30,10 @@ public class MySQLClientDAO extends AbstractDao<Client, Integer> {
 
     @Override
     public String getSelectQuery() {
-        return "SELECT * FROM clients WHERE client_id=";
+        return "SELECT * FROM clients C " +
+                "JOIN favourite_lists F USING (client_id) " +
+                "JOIN favourite_list_goods USING (favourite_list_id) " +
+                "JOIN goods USING (goods_id) WHERE client_id =";
     }
 
 
