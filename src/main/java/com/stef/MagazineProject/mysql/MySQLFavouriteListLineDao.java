@@ -33,7 +33,7 @@ public class MySQLFavouriteListLineDao extends AbstractDao<FavouriteListLine,Int
     public String getSelectQuery() {
         return "SELECT f.*,g.* FROM favourite_list_goods f NATURAL JOIN goods g " +
                 "WHERE f.goods_id=g.goods_id " +
-                "AND list_id=";
+                "AND line_id=";
     }
 
     @Override
@@ -65,7 +65,7 @@ public class MySQLFavouriteListLineDao extends AbstractDao<FavouriteListLine,Int
                 item.setExpDate(convertToGD(resultSet.getDate("goods_expiration_date")));
                 FavouriteListLine line = new FavouriteListLine(item,
                         resultSet.getInt("favourite_list_id"));
-                line.setId(resultSet.getInt("list_id"));
+                line.setId(resultSet.getInt("line_id"));
                 lines.add(line);
             }
         } catch (Exception e) {

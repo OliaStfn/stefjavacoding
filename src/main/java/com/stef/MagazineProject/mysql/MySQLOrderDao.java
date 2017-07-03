@@ -28,26 +28,18 @@ public class MySQLOrderDao extends AbstractDao<Order, Integer> {
 
     @Override
     public String getSelectQuery() {
-        /*return "SELECT o.*,s.status,os.order_status_date " +
-                "FROM orders o NATURAL JOIN status s " +
-                "NATURAL JOIN order_status os " +
-                "WHERE os.order_id=o.order_id " +
-                "AND os.status_id=s.status_id " +
-                "AND os.order_status_date=(SELECT MAX(os.order_status_date)) " +
-                "AND o.order_id=";*/
-        return "SELECT * FROM orders WHERE order_id=";
+        return "SELECT * FROM orders O JOIN orders_goods OG USING (order_id)\n" +
+                "JOIN goods G ON (goods_id=OG.good_id) " +
+                "JOIN order_status OS USING (order_id) " +
+                "JOIN status S USING (status_id) WHERE order_id=";
     }
 
     @Override
     public String getSelectAllQuery() {
-        /*return "SELECT o.*,s.status,os.order_status_date " +
-                "FROM orders o NATURAL JOIN status s " +
-                "NATURAL JOIN order_status os " +
-                "NATURAL JOIN goods g " +
-                "NATURAL JOIN orders_goods og " +
-                "WHERE os.order_id=o.order_id " +
-                "AND os.status_id=s.status_id;";*/
-        return "SELECT * FROM orders;";
+        return "SELECT * FROM orders O JOIN orders_goods OG USING (order_id)\n" +
+                "JOIN goods G ON (goods_id=OG.good_id) " +
+                "JOIN order_status OS USING (order_id) " +
+                "JOIN status S USING (status_id);";
     }
 
     @Override
@@ -69,17 +61,38 @@ public class MySQLOrderDao extends AbstractDao<Order, Integer> {
     @Override
     public ArrayList<Order> parseResultSet(ResultSet resultSet) throws DaoException {
         ArrayList<Order> orders = new ArrayList<Order>();
+        boolean temp = false;
         try {
             while (resultSet.next()) {
                 Order order = new Order();
+                OrderLine line = new OrderLine();
+                GoodsForDB goods = new GoodsForDB();
+                goods.setId(resultSet.getInt("goods_id"));
+                goods.setName(resultSet.getString("goods_name"));
+                goods.setPrice(resultSet.getDouble("goods_price"));
+                goods.setVendor(resultSet.getString("goods_vendor"));
+                goods.setProductionDate(convertToGD(resultSet.getDate("goods_production_date")));
+                goods.setExpDate(convertToGD(resultSet.getDate("goods_expiration_date")));
+                line.setGoods(goods);
+                line.setCount(resultSet.getInt("orders_goods.count_goods"));
+                line.setPrice(resultSet.getInt("orders_goods.order_line_price"));
+                order.setStatus(resultSet.getString("status.status"));
                 order.setId(resultSet.getInt("orders.order_id"));
                 order.setClientId(resultSet.getInt("orders.client_id"));
-                //order.setChangeStatusDate(convertToGD(resultSet.getDate("order_status.order_status_date")));
-               // order.setStatus(resultSet.getString("status.status"));
-                orders.add(order);
+                order.setChangeStatusDate(convertToGD(resultSet.getDate("order_status.order_status_date")));
+                for (Order order1 : orders) {
+                    if (order1.getId() == order.getId()) {
+                        order1.addNewLine(line);
+                        temp = true;
+                    }
+                }
+                if(!temp){
+                    order.addNewLine(line);
+                    orders.add(order);
+                }
             }
         } catch (Exception e) {
-            throw new DaoException(e+"error with pars result set");
+            throw new DaoException(e + "error with pars result set");
         }
         return orders;
     }
@@ -90,7 +103,7 @@ public class MySQLOrderDao extends AbstractDao<Order, Integer> {
             statement.setInt(1, obj.getId());
             statement.setString(2, obj.getStatus());
         } catch (SQLException e) {
-            throw new DaoException(e+"error with statement update");
+            throw new DaoException(e + "error with statement update");
         }
     }
 
@@ -99,7 +112,7 @@ public class MySQLOrderDao extends AbstractDao<Order, Integer> {
         try {
             statement.setInt(1, obj.getClientId());
         } catch (SQLException e) {
-            throw new DaoException(e+"error with statement insert");
+            throw new DaoException(e + "error with statement insert");
         }
     }
 

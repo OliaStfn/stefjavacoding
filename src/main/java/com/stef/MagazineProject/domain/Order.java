@@ -14,7 +14,7 @@ public class Order implements Identificators<Integer> {
     private int clientId;
     private int orderId;
     private Status status;
-    private GregorianCalendar changeStatusDate;;
+    private GregorianCalendar changeStatusDate;
     private ArrayList<OrderLine> lines;
 
     public Order() {
@@ -53,11 +53,13 @@ public class Order implements Identificators<Integer> {
         lines.add(new OrderLine(goods,count,orderId));
     }
 
-    public void setStatus(String status) throws DaoException {
-        GenericDao dao = DaoCreator.createMySqlDao("status");
-        this.status = (Status) dao.createInDB(new Status(status));
-        dao = DaoCreator.createMySqlDao("status order");
-        dao.createInDB(this);
+    public void addNewLine(OrderLine line) {
+    lines.add(line);
+    }
+
+
+        public void setStatus(String status) throws DaoException {
+        this.status=new Status(status);
     }
 
     public void setStatus() throws DaoException {

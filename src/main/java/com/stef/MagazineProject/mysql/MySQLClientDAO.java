@@ -77,7 +77,7 @@ public class MySQLClientDAO extends AbstractDao<Client, Integer> {
                 clients.add(client);
             }
         } catch (Exception e) {
-            throw new DaoException(e+"error with pars result set");
+            throw new DaoException(e + "error with pars result set");
         }
         return clients;
     }
@@ -87,14 +87,14 @@ public class MySQLClientDAO extends AbstractDao<Client, Integer> {
         try {
             statement.setString(1, obj.getName());
             statement.setString(2, obj.getSurname());
-            statement.setDate(3,convertToDate(obj.getBornDate()));
-            statement.setString(4,obj.getPhoneNumber());
-            statement.setString(5,obj.getAddress());
-            statement.setString(6,obj.getLogin());
-            statement.setString(7,obj.getPassword());
+            statement.setDate(3, convertToDate(obj.getBornDate()));
+            statement.setString(4, obj.getPhoneNumber());
+            statement.setString(5, obj.getAddress());
+            statement.setString(6, obj.getLogin());
+            statement.setString(7, obj.getPassword());
             statement.setInt(8, obj.getId());
         } catch (SQLException e) {
-            throw new DaoException(e+"error with statement update");
+            throw new DaoException(e + "error with statement update");
         }
     }
 
@@ -103,20 +103,20 @@ public class MySQLClientDAO extends AbstractDao<Client, Integer> {
         try {
             statement.setString(1, obj.getName());
             statement.setString(2, obj.getSurname());
-            statement.setDate(3,convertToDate(obj.getBornDate()));
-            statement.setString(4,obj.getPhoneNumber());
-            statement.setString(5,obj.getAddress());
-            statement.setString(6,obj.getLogin());
-            statement.setString(7,obj.getPassword());
+            statement.setDate(3, convertToDate(obj.getBornDate()));
+            statement.setString(4, obj.getPhoneNumber());
+            statement.setString(5, obj.getAddress());
+            statement.setString(6, obj.getLogin());
+            statement.setString(7, obj.getPassword());
         } catch (SQLException e) {
-            throw new DaoException(e+"error with statement insert");
+            throw new DaoException(e + "error with statement insert");
         }
     }
 
 
     @Override
     public Client create() throws DaoException {
-        boolean temp=false;
+        boolean temp = false;
         Client tempClient = new Client();
         Scanner in = new Scanner(System.in);
         System.out.println("Enter name: ");
@@ -137,11 +137,11 @@ public class MySQLClientDAO extends AbstractDao<Client, Integer> {
         do {
             System.out.println("Enter your login: ");
             tempClient.setLogin(in.nextLine());
-            ArrayList<Client>clients=DaoCreator.readClientFromDB();
-            for(Client client: clients){
-                if(tempClient.getLogin().equals(client.getLogin())){
+            ArrayList<Client> clients = DaoCreator.readClientFromDB();
+            for (Client client : clients) {
+                if (tempClient.getLogin().equals(client.getLogin())) {
                     System.out.println("Username is exist");
-                    temp=true;
+                    temp = true;
                     break;
                 }
             }

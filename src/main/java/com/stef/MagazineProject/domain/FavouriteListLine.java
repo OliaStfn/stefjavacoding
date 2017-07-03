@@ -7,6 +7,9 @@ public class FavouriteListLine implements Identificators<Integer>{
     private int favoriteListId;
     private int lineId;
 
+    public FavouriteListLine() {
+    }
+
     public FavouriteListLine(Goods goods, int favoriteListId) {
         this.goods = goods;
         this.favoriteListId=favoriteListId;

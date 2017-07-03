@@ -13,14 +13,14 @@ public class FavouriteList implements Identificators<Integer> {
     private static final Logger log = Logger.getLogger(FavouriteList.class);
     private int id;
     private int clientId;
-    private ArrayList<FavouriteListLine> item;
+    private ArrayList<FavouriteListLine> lines;
 
     public FavouriteList() {
-        item = new ArrayList<FavouriteListLine>();
+        lines = new ArrayList<FavouriteListLine>();
     }
 
     public FavouriteList(int clientId) {
-        item = new ArrayList<FavouriteListLine>();
+        lines = new ArrayList<FavouriteListLine>();
         this.clientId=clientId;
     }
 
@@ -49,7 +49,7 @@ public class FavouriteList implements Identificators<Integer> {
             try {
                 GenericDao dao = DaoCreator.createMySqlDao("favorite line");
                 pr = Stock.findProduct();
-                item.add((FavouriteListLine) dao.createInDB(new FavouriteListLine(pr, id)));
+                lines.add((FavouriteListLine) dao.createInDB(new FavouriteListLine(pr, id)));
                 log.info("The product was add to favourite list\n" + pr.toString());
                 System.out.println("Add other product?");
                 System.out.println("1-YES / 0-NO :");
@@ -61,10 +61,14 @@ public class FavouriteList implements Identificators<Integer> {
         } while (repeat != 0);
     }
 
+    public  void addNewLine(FavouriteListLine line){
+        lines.add(line);
+    }
+
     public void addProduct(Goods goods) {
         try {
             GenericDao dao = DaoCreator.createMySqlDao("favorite line");
-            item.add((FavouriteListLine) dao.createInDB(new FavouriteListLine(goods, id)));
+            lines.add((FavouriteListLine) dao.createInDB(new FavouriteListLine(goods, id)));
         } catch (Exception e) {
             log.error("Error" + e.getMessage());
         }
@@ -76,14 +80,14 @@ public class FavouriteList implements Identificators<Integer> {
         String temp;
         do {
             try {
-                for (FavouriteListLine line : item) {
+                for (FavouriteListLine line : lines) {
                     System.out.println(line.toString());
                 }
                 System.out.println("Enter name of product which you want delete");
                 temp = in.nextLine();
-                for (int i = 0; i < item.size(); i++) {
-                    if (temp == item.get(i).getGoods().getName()) {
-                        item.remove(i);
+                for (int i = 0; i < lines.size(); i++) {
+                    if (temp == lines.get(i).getGoods().getName()) {
+                        lines.remove(i);
                     }
                 }
                 System.out.println("Delete other product?");
@@ -98,7 +102,7 @@ public class FavouriteList implements Identificators<Integer> {
     @Override
     public String toString() {
         String temp = "";
-        for (FavouriteListLine line : item) {
+        for (FavouriteListLine line : lines) {
             temp += line.toString();
         }
         return "FavouriteList: " +
