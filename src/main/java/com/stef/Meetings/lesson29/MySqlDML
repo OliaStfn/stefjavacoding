@@ -1,0 +1,39 @@
+INSERT INTO goods VALUES (
+    -> NULL,
+    -> 'pizza',
+    -> 49,
+    -> 'pizza+',
+    -> '2017-05-22',
+    -> '2017-05-23',
+    -> '2017-05-22');
+
+INSERT INTO goods SET
+    -> product_name = 'burger',
+    -> product_price = 27,
+    -> product_vendor_name = 'pizza+',
+    -> product_production_date = '2017-05-22',
+    -> product_validity_date = '2017-05-23',
+    -> create_date = '2017-05-22';
+
+
+INSERT INTO goods (product_name, product_price, product_vendor_name, product_production_date, product_validity_date, create_date)
+    -> VALUES (
+    -> 'salat',
+    -> 25,
+    -> 'pizza+',
+    -> '2017-05-22',
+    -> '2017-05-23',
+    -> CURDATE());  
+
+SELECT LAST_INSERT_ID();   
+SELECT NOW();    
+SELECT CURDATE();
+
+SELECT * FROM goods;
+SELECT product_name,product_price FROM goods;
+ SELECT product_name,product_price FROM goods WHERE product_price=25;
+ SELECT product_name,product_price FROM goods WHERE product_price!=25;
+SELECT product_name,product_price FROM goods WHERE product_price!=25 AND product_name!='pizza';
+
+SELECT product_name,product_price FROM goods WHERE product_price IN (25,27);
+SELECT product_name,product_price FROM goods WHERE product_name LIKE '%a%';
